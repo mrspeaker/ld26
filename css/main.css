@@ -1,0 +1,11 @@
+* {}
+
+body {
+	font-family: helvetica;
+	background-color: #444;
+}
+
+section {
+	width: 50%;
+	margin: 0 auto;
+}
