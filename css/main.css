@@ -10,7 +10,7 @@ body {
   	-ms-user-select: none;
   	user-select: none;
 
-  	cursor: url("../res/pointer.png"), auto;
+  	cursor: crosshair;/*url("../res/pointer.png"), auto;*/
 }
 
 section {

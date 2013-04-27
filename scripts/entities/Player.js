@@ -30,6 +30,8 @@
 			this.speed = 3;
 			this.headAt = 0;
 
+			this.particle = new Ω.Particle({});
+
 			// this.anims = new Ω.Anims([
 			// 	new Ω.Anim("idle", this.sheet, 500, [[8, 0], [9, 0]]),
 			// ]);
@@ -79,6 +81,9 @@
 					y1 += this.speed;
 				}
 
+			}
+			if (Ω.input.pressed("fire")) {
+				this.particle.play(this.x + (this.w / 2), this.y + 10, this.angle);
 			}
 			if (Ω.input.isDown("fire")) {
 				//this.yPow = -10;
@@ -141,6 +146,7 @@
 					y: oy
 				});
 
+			this.angle = angle;
 			this.headAt = (angle / (2 * Math.PI / 8) | 0) + 3;
 
 			var hit = Ω.rays.cast(
@@ -158,6 +164,8 @@
 					hit.y * this.map.sheet.h]);
 				this.screen.paint(hit.x * this.map.sheet.w, hit.y * this.map.sheet.h, angle, powpow);
 			}
+
+			this.particle.tick(angle);
 
 			this.powpow  = powpow;
 
@@ -180,14 +188,20 @@
 				this.rays.forEach(function (r) {
 					Ω.rays.draw(gfx, r[0], r[1], r[2], r[3], r[4], 32, 32);
 				});
-
 			//}*/
 
 			gfx.ctx.fillStyle = "hsla(200, 50%, 50%, 0.8)";
-			gfx.ctx.fillRect(this.x, this.y, this.w, this.h);
+			//gfx.ctx.fillRect(this.x, this.y, this.w, this.h);
 
 			this.sheets["heads"].render(gfx, this.headAt, 0, this.x + 2, this.y - 10);
+
+			this.sheets["heads"].render(gfx, 0, 2, this.x + 1, this.y - 1);
+			this.sheets["heads"].render(gfx, 0, 3, this.x +1, this.y + 15);
+			this.sheets["heads"].render(gfx, 2, 1, this.x +1, this.y + 20);
+
 			this.sheets["heads"].render(gfx, this.headAt, 1, this.x + 2, this.y + (this.headAt > 0 && this.headAt < 4 ? -5 : 5));
+
+			this.particle.render(gfx);
 
 		}
 
