@@ -14,6 +14,7 @@ A game by Mr Speaker for LD26
 	- watercolors (disolves quickly back to white)
 	- inks (splatter and stay)
 	- acrylics (magic: makes EVERY block of that type to be painted the same)
+	- paint bomb (explodes and paints in all directions.)
 
 * Surrealist elements in the levels
 	- view become kalidascopic (rotates x degrees)
