@@ -14,9 +14,7 @@
 			"note4": new Ω.Sound("res/audio/note4", 0.5, false)
 		},
 
-		sheets: {
-			heads: new Ω.SpriteSheet("res/heads.png", 16)
-		},
+		sheet: new Ω.SpriteSheet("res/heads.png", 16),
 
 		init: function (startX, startY, screen) {
 
@@ -32,9 +30,13 @@
 
 			this.particle = new Ω.Particle({});
 
-			// this.anims = new Ω.Anims([
-			// 	new Ω.Anim("idle", this.sheet, 500, [[8, 0], [9, 0]]),
-			// ]);
+			this.anims = new Ω.Anims([
+				new Ω.Anim("idle", this.sheet, 500, [[1, 2]]),
+				new Ω.Anim("walk", this.sheet, 70, [[2, 2], [3, 2], [4, 2], [5, 2], [6, 2], [7, 2], [8, 2], [9, 2]]),
+				new Ω.Anim("awalkLeft", this.sheet, 70, [[8, 3], [7, 3], [6, 3], [5, 3], [4, 3], [3, 3], [2, 3], [1, 3]])
+			]);
+
+			this.anims.set("idle");
 
 			this.rays = [];
 
@@ -48,11 +50,8 @@
 
 			var x1 = 0,
 				y1 = 0,
-				powpow = false;
+				powpow = this.powpow;
 
-			if (this.yPow < 11) {
-				//y1 += (this.yPow++);
-			}
 			if (Ω.input.isDown("left")) {
 				if(Ω.input.pressed("right")){
 					Ω.input.release("left");
@@ -80,19 +79,30 @@
 				} else {
 					y1 += this.speed;
 				}
-
 			}
+
+			if (x1 < 0) {
+				this.anims.setTo("awalkLeft");
+			} else if (x1 > 0) {
+				this.anims.setTo("walk");
+			} else {
+				this.anims.setTo("idle");
+			}
+
 			if (Ω.input.pressed("fire")) {
 				this.particle.play(this.x + (this.w / 2), this.y + 10, this.angle);
-			}
-			if (Ω.input.isDown("fire")) {
-				//this.yPow = -10;
-				//console.log(this.rays[0]);
+				//this.screen.addBullet(this.x, this.y - 10, this.angle);
 				powpow = true;
 			}
+
+			if (!(Ω.input.isDown("fire")) && Ω.input.wasDown("fire")) {
+				powpow = false;
+			}
+
 			if (Ω.input.isDown("jump")) {
 				if(!this.jumping) {
 					this.jump();
+					powpow = false;
 					var sound = this.sounds["note" + (Math.random() * 4 + 1| 0)];
 					sound.play();
 				}
@@ -125,19 +135,9 @@
 
 			// Test raycastin'
 			this.rays = [];
-			// for (var i = 0; i < Math.PI * 2; i+= 0.2) {
-			// 	var hit = Ω.rays.cast(i, this.x + this.w / 2, this.y + this.h / 2, this.map);
-			// 	if (hit) {
-			// 		this.rays.push([
-			// 			this.x + this.w / 2,
-			// 			this.y + this.h / 2,
-			// 			hit.x * this.map.sheet.w,
-			// 			hit.y * this.map.sheet.h]);
-			// 	}
-			// }
 
 			var ox = this.x + this.w / 2,
-				oy = this.y + this.h / 2,
+				oy = this.y + this.h * 0.2,
 				angle = Ω.utils.angleBetween({
 					x: (Ω.input.mouse.x + this.screen.camera.x), // * (640 / window.innerWidth),
 					y: (Ω.input.mouse.y + this.screen.camera.y) //* (480 / window.innerHeight)
@@ -158,13 +158,14 @@
 
 			if (hit) {
 				this.rays.push([
-					this.x + this.w / 2,
-					this.y + this.h / 2,
+					ox,
+					oy,
 					hit.x * this.map.sheet.w,
 					hit.y * this.map.sheet.h]);
 				this.screen.paint(hit.x * this.map.sheet.w, hit.y * this.map.sheet.h, angle, powpow);
 			}
 
+			this.anims.tick();
 			this.particle.tick(angle);
 
 			this.powpow  = powpow;
@@ -184,22 +185,23 @@
 			var self = this;
 
 			//Test raycastin'
-			/*if (this.powpow) {
+			if (this.powpow) {
 				this.rays.forEach(function (r) {
 					Ω.rays.draw(gfx, r[0], r[1], r[2], r[3], r[4], 32, 32);
 				});
-			//}*/
+			}
 
 			gfx.ctx.fillStyle = "hsla(200, 50%, 50%, 0.8)";
-			//gfx.ctx.fillRect(this.x, this.y, this.w, this.h);
 
-			this.sheets["heads"].render(gfx, this.headAt, 0, this.x + 2, this.y - 10);
+			this.sheet.render(gfx, this.headAt, 0, this.x + 2, this.y - 11);
 
-			this.sheets["heads"].render(gfx, 0, 2, this.x + 1, this.y - 1);
-			this.sheets["heads"].render(gfx, 0, 3, this.x +1, this.y + 15);
-			this.sheets["heads"].render(gfx, 2, 1, this.x +1, this.y + 20);
+			this.sheet.render(gfx, 0, 2, this.x + 1, this.y - 3);
+			this.sheet.render(gfx, 0, 3, this.x +1, this.y + 11);
+			this.anims.render(gfx, this.x + 1, this.y + 17);
 
-			this.sheets["heads"].render(gfx, this.headAt, 1, this.x + 2, this.y + (this.headAt > 0 && this.headAt < 4 ? -5 : 5));
+
+			this.sheet.render(gfx, this.headAt, 1, this.x + 2, this.y + (this.headAt > 0 && this.headAt < 4 ? -5 : 5));
+
 
 			this.particle.render(gfx);
 

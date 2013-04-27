@@ -18,6 +18,15 @@
 
 		},
 
+		bombed: function (x, y) {
+
+			//var c = this.ctx;
+
+			//c.fillRect(x - 50, y - 50, 100, 100);
+			this.paint(x, y, 0, true);
+
+		},
+
 		paint: function (x, y, 	angle, powpow) {
 
 			if (!powpow) {
@@ -33,7 +42,7 @@
 			for(var i = 0; i < amount; i++) {
 
 				if (powpow) {
-					col = "hsla(" + ((Math.random() * 30 | 0) + 60) + ", 50%, 50%, " + (Math.random().toFixed(2) * 0.8 + 0.2) + ")";
+					col = "hsla(" + ((Math.random() * 30 | 0) + 60) + ", 50%, 90%, " + (Math.random().toFixed(2) * 0.8 + 0.2) + ")";
 					dist = Math.random() * 30 + 4;
 					size = Math.random() * 10 + 2 | 0;
 				} else {

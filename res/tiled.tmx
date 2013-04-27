@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="maintiles" tilewidth="32" tileheight="32">
+  <image source="tiles.png" width="256" height="64"/>
+ </tileset>
+ <tileset firstgid="17" name="ents" tilewidth="16" tileheight="32">
+  <image source="heads.png" width="256" height="64"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt10EKAyEMAMBauv3/k3sqSKq4u8lB6AwIekgOCQZtjzqtMNe/ulrDd2EufunHXlrYr9YRzjGWnKt17O9HjNOPvEw/RrnIqejHaH5xz6yOz8k6FrnIMa/2knnvjt5f5Ph/7GVVw1c4f/sxitOPvDN/wH4Wze6HeVWjr2P8b8f9mX4BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAjj472ACj
+  </data>
+ </layer>
+ <objectgroup name="entities" width="100" height="100">
+  <object name="player_start" gid="17" x="584" y="187"/>
+ </objectgroup>
+</map>
