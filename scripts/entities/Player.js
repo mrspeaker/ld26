@@ -14,6 +14,10 @@
 			"note4": new Ω.Sound("res/audio/note4", 0.5, false)
 		},
 
+		sheets: {
+			heads: new Ω.SpriteSheet("res/heads.png", 16)
+		},
+
 		init: function (startX, startY, screen) {
 
 			// FIXME: need event system (or something) instead of this.
@@ -24,6 +28,11 @@
 			this.yPow = 0;
 
 			this.speed = 3;
+			this.headAt = 0;
+
+			// this.anims = new Ω.Anims([
+			// 	new Ω.Anim("idle", this.sheet, 500, [[8, 0], [9, 0]]),
+			// ]);
 
 			this.rays = [];
 
@@ -132,6 +141,8 @@
 					y: oy
 				});
 
+			this.headAt = (angle / (2 * Math.PI / 8) | 0) + 3;
+
 			var hit = Ω.rays.cast(
 				angle,
 				ox,
@@ -174,6 +185,9 @@
 
 			gfx.ctx.fillStyle = "hsla(200, 50%, 50%, 0.8)";
 			gfx.ctx.fillRect(this.x, this.y, this.w, this.h);
+
+			this.sheets["heads"].render(gfx, this.headAt, 0, this.x + 2, this.y - 10);
+			this.sheets["heads"].render(gfx, this.headAt, 1, this.x + 2, this.y + (this.headAt > 0 && this.headAt < 4 ? -5 : 5));
 
 		}
 
