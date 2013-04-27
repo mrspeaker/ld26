@@ -7,6 +7,13 @@
 		w: 20,
 		h: 30,
 
+		sounds: {
+			"note1": new Ω.Sound("res/audio/note1", 0.5, false),
+			"note2": new Ω.Sound("res/audio/note2", 0.5, false),
+			"note3": new Ω.Sound("res/audio/note3", 0.5, false),
+			"note4": new Ω.Sound("res/audio/note4", 0.5, false)
+		},
+
 		init: function (startX, startY, screen) {
 
 			// FIXME: need event system (or something) instead of this.
@@ -64,13 +71,17 @@
 				}
 
 			}
-			if (Ω.input.pressed("fire")) {
+			if (Ω.input.isDown("fire")) {
 				//this.yPow = -10;
 				//console.log(this.rays[0]);
 				powpow = true;
 			}
 			if (Ω.input.isDown("jump")) {
-				!this.jumping && this.jump();
+				if(!this.jumping) {
+					this.jump();
+					var sound = this.sounds["note" + (Math.random() * 4 + 1| 0)];
+					sound.play();
+				}
 			}
 
 			if (this.jumping) {
@@ -114,8 +125,8 @@
 			var ox = this.x + this.w / 2,
 				oy = this.y + this.h / 2,
 				angle = Ω.utils.angleBetween({
-					x: (Ω.input.mouse.x + this.screen.camera.x) * (640 / window.innerWidth),
-					y: (Ω.input.mouse.y + this.screen.camera.y) * (480 / window.innerHeight)
+					x: (Ω.input.mouse.x + this.screen.camera.x), // * (640 / window.innerWidth),
+					y: (Ω.input.mouse.y + this.screen.camera.y) //* (480 / window.innerHeight)
 				}, {
 					x: ox,
 					y: oy
@@ -137,6 +148,8 @@
 				this.screen.paint(hit.x * this.map.sheet.w, hit.y * this.map.sheet.h, angle, powpow);
 			}
 
+			this.powpow  = powpow;
+
 		},
 
 		hitBlocks: function (blocks) {
@@ -149,10 +162,15 @@
 
 		render: function (gfx, map) {
 
+			var self = this;
+
 			//Test raycastin'
-			this.rays.forEach(function (r) {
-				Ω.rays.draw(gfx, r[0], r[1], r[2], r[3], r[4], 32, 32);
-			});
+			/*if (this.powpow) {
+				this.rays.forEach(function (r) {
+					Ω.rays.draw(gfx, r[0], r[1], r[2], r[3], r[4], 32, 32);
+				});
+
+			//}*/
 
 			gfx.ctx.fillStyle = "hsla(200, 50%, 50%, 0.8)";
 			gfx.ctx.fillRect(this.x, this.y, this.w, this.h);

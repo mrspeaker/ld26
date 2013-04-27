@@ -6,6 +6,10 @@
 
 		sheet: new Ω.SpriteSheet("res/tiles.png", 32),
 
+		sounds: {
+
+		},
+
 		init: function () {
 
 			this.map = new Ω.Map(this.sheet, [
@@ -33,6 +37,7 @@
 			this.camera = new Ω.TrackingCamera(this.player, 0, 0, Ω.env.w, Ω.env.h);
 
 			this.painted = new PaintedScreen(this.map);
+
 		},
 
 		tick: function () {
@@ -52,7 +57,7 @@
 
 			var c = gfx.ctx;
 
-			c.fillStyle = "hsl(120, 10%, 15%)";
+			c.fillStyle = "hsl(120, 10%, 65%)";
 			c.fillRect(0, 0, gfx.w, gfx.h);
 
 			this.camera.render(gfx, [this.painted, this.player]);
