@@ -16,7 +16,7 @@
 			this.y = startY;
 			this.yPow = 0;
 
-			this.speed = 3;
+			this.speed = 7.5;
 
 			this.rays = [];
 
@@ -48,7 +48,8 @@
 				y1 += this.speed;
 			}
 			if (Ω.input.pressed("fire")) {
-				this.yPow = -10;
+				//this.yPow = -10;
+				console.log(this.rays[0])
 			}
 
 			this.move(x1, y1, map);
@@ -66,7 +67,19 @@
 			// 	}
 			// }
 
-			var hit = Ω.rays.cast(Ω.utils.angleBetween(this, Ω.input.mouse), this.x + this.w / 2, this.y + this.h / 2, this.map)
+			var ox = this.x + this.w / 2,
+				oy = this.y + this.h / 2;
+
+			var hit = Ω.rays.cast(
+				Ω.utils.angleBetween({
+					x: Ω.input.mouse.x + this.screen.camera.x,
+					y: Ω.input.mouse.y + this.screen.camera.y
+				}, {x: ox, y: oy}),
+				ox,
+				oy,
+				this.map
+			);
+
 			if (hit) {
 				this.rays.push([
 					this.x + this.w / 2,
