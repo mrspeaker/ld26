@@ -17,10 +17,10 @@
 			Ω.input.binds([
 				["space", "fire"],
 				["escape", "escape"],
-				["left", "left"],
-				["right", "right"],
-				["up", "up"],
-				["down", "down"]
+				["a", "left"],
+				["d", "right"],
+				["w", "up"],
+				["s", "down"]
 			]);
 
 			this.setScreen(new MainScreen());
