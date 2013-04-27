@@ -16,7 +16,7 @@
 			this.y = startY;
 			this.yPow = 0;
 
-			this.speed = 7.5;
+			this.speed = 4;
 
 			this.rays = [];
 
@@ -86,6 +86,7 @@
 					this.y + this.h / 2,
 					hit.x * this.map.sheet.w,
 					hit.y * this.map.sheet.h]);
+				this.screen.paint(hit.x * this.map.sheet.w, hit.y * this.map.sheet.h);
 			}
 
 		},
@@ -105,8 +106,8 @@
 				Ω.rays.draw(gfx, r[0], r[1], r[2], r[3], r[4], 32, 32);
 			});
 
-			gfx.ctx.strokeStyle = "rgba(100, 0, 0, 1)";
-			gfx.ctx.strokeRect(this.x, this.y, this.w, this.h);
+			gfx.ctx.fillStyle = "hsla(200, 50%, 50%, 0.8)";
+			gfx.ctx.fillRect(this.x, this.y, this.w, this.h);
 
 		}
 
