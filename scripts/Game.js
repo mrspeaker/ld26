@@ -14,13 +14,15 @@
 				// use for progress bar
 			};
 
+			var az = urlParams.azerty;
+
 			Ω.input.binds([
-				["space", "fire"],
+				["space", "jump"],
 				["escape", "escape"],
-				["a", "left"],
-				["d", "right"],
-				["w", "up"],
-				["s", "down"],
+				[az ? "az_a" : "a", "left"],
+				[az ? "az_d" : "d", "right"],
+				[az ? "az_w" : "w", "jump"],
+				[az ? "az_s" : "s", "down"],
 				["mouse1", "fire"]
 			]);
 
