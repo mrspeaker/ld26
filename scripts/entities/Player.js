@@ -29,27 +29,45 @@
 		tick: function (map) {
 
 			var x1 = 0,
-				y1 = 0;
+				y1 = 0,
+				powpow = false;
 
 			if (this.yPow < 11) {
 				y1 += (this.yPow++);
 			}
-
 			if (Ω.input.isDown("left")) {
-				x1 -= this.speed;
+				if(Ω.input.pressed("right")){
+					Ω.input.release("left");
+				} else {
+					x1 -= this.speed;
+				}
 			}
 			if (Ω.input.isDown("right")) {
-				x1 += this.speed;
+				if(Ω.input.pressed("left")){
+					Ω.input.release("right");
+				} else {
+					x1 += this.speed;
+				}
 			}
 			if (Ω.input.isDown("up")) {
-				y1 -= this.speed;
+				if(Ω.input.pressed("down")){
+					Ω.input.release("up");
+				} else {
+					y1 -= this.speed;
+				}
 			}
 			if (Ω.input.isDown("down")) {
-				y1 += this.speed;
+				if(Ω.input.pressed("up")){
+					Ω.input.release("down");
+				} else {
+					y1 += this.speed;
+				}
+
 			}
 			if (Ω.input.pressed("fire")) {
 				//this.yPow = -10;
-				console.log(this.rays[0])
+				//console.log(this.rays[0]);
+				powpow = true;
 			}
 
 			this.move(x1, y1, map);
@@ -68,13 +86,17 @@
 			// }
 
 			var ox = this.x + this.w / 2,
-				oy = this.y + this.h / 2;
-
-			var hit = Ω.rays.cast(
-				Ω.utils.angleBetween({
+				oy = this.y + this.h / 2,
+				angle = Ω.utils.angleBetween({
 					x: Ω.input.mouse.x + this.screen.camera.x,
 					y: Ω.input.mouse.y + this.screen.camera.y
-				}, {x: ox, y: oy}),
+				}, {
+					x: ox,
+					y: oy
+				});
+
+			var hit = Ω.rays.cast(
+				angle,
 				ox,
 				oy,
 				this.map
@@ -86,7 +108,7 @@
 					this.y + this.h / 2,
 					hit.x * this.map.sheet.w,
 					hit.y * this.map.sheet.h]);
-				this.screen.paint(hit.x * this.map.sheet.w, hit.y * this.map.sheet.h);
+				this.screen.paint(hit.x * this.map.sheet.w, hit.y * this.map.sheet.h, angle, powpow);
 			}
 
 		},

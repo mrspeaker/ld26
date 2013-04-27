@@ -20,7 +20,8 @@
 				["a", "left"],
 				["d", "right"],
 				["w", "up"],
-				["s", "down"]
+				["s", "down"],
+				["mouse1", "fire"]
 			]);
 
 			this.setScreen(new MainScreen());
