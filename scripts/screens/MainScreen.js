@@ -18,8 +18,9 @@
 			}).done(function (data) {
 
 				var map = [],
-					cells = data.layers[0].data,
-        			size = data.layers[0].width;
+					mainLayer = Ω.utils.getByKeyValue(data.layers, "name", "main"),
+					cells =  mainLayer.data,
+        			size = mainLayer.width;
 
 				while (cells.length > 0) {
 				    map.push(cells.splice(0, size));
@@ -27,7 +28,12 @@
 
 				this.map = new Ω.Map(this.sheet, map);
 
-				this.player = new Player(15 * 32, 3 * 32, this);
+				var entLayer = Ω.utils.getByKeyValue(data.layers, "name", "entities");
+				console.log(entLayer);
+				var ps = Ω.utils.getByKeyValue(entLayer.objects, "name", "player_start");
+				console.log(ps);
+
+				this.player = new Player(ps.x, ps.y, this);
 				this.player.setMap(this.map);
 
 				this.camera = new Ω.TrackingCamera(this.player, 0, 0, Ω.env.w, Ω.env.h);
