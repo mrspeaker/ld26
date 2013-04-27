@@ -19,13 +19,13 @@
 			// 	this.ctx.fillStyle = "hsl(" + (Math.random() * 360 | 0) + ", 50%, 50%)";
 			// 	this.ctx.fillRect(Math.random() * ww, Math.random() * hh, Math.random() * 100, Math.random() * 50);
 			// }
-			this.ctx.fillStyle = "#000";
-			this.ctx.fillText("TOPLEFT", 0, 20);
+			// this.ctx.fillStyle = "#000";
+			// this.ctx.fillText("TOPLEFT", 0, 20);
 
-			this.ctx.fillText("TOPRIGHT", this.w - 50, 20);
-			this.ctx.fillText("BOTLEFT", 0, this.h - 30);
-			this.ctx.fillText("BOTRIGHT", this.w - 50, this.h-30);
-			this.ctx.fillText("CENTER", this.w / 2, this.h / 2);
+			// this.ctx.fillText("TOPRIGHT", this.w - 50, 20);
+			// this.ctx.fillText("BOTLEFT", 0, this.h - 30);
+			// this.ctx.fillText("BOTRIGHT", this.w - 50, this.h-30);
+			// this.ctx.fillText("CENTER", this.w / 2, this.h / 2);
 
 		},
 
@@ -39,7 +39,7 @@
 				size = Math.random() * 3 + 1 | 0,
 				dist,
 				amount = Math.random() * (powpow ? 30 : 6) + 4,
-				col = "hsla(" + (Math.random() * 30 | 0) + ", 80%, 80%, " + ((Math.random().toFixed(2) * 0.5) + 0.5) + ")";
+				col = "hsla(" + (Math.random() * 90 | 0) + ", 0%, " + (Math.random() * 50 + 50 | 0)  +"%, " + ((Math.random().toFixed(2) * 0.5) + 0.5) + ")";
 
 			c.fillStyle = col;
 			c.beginPath(); // Start the path
@@ -57,8 +57,6 @@
 					dist = Math.random() * 20 + 4;
 					size = Math.random() * 1 + 1 | 0;
 				}
-
-
 
 				var xo = (x + Math.random() * (powpow ? 10 : 2))  + Math.cos(angle) * dist,
 					yo = (y + Math.random() * (powpow ? 10 : 2)) + Math.sin(angle) * dist;

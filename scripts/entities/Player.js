@@ -128,7 +128,7 @@
 				Ω.rays.draw(gfx, r[0], r[1], r[2], r[3], r[4], 32, 32);
 			});
 
-			gfx.ctx.fillStyle = "hsla(200, 50%, 50%, 0.8)";
+			gfx.ctx.fillStyle = "hsla(200, 50%, 50%, 0.3)";
 			gfx.ctx.fillRect(this.x, this.y, this.w, this.h);
 
 		}
