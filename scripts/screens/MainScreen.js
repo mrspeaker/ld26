@@ -6,6 +6,8 @@
 
 		sheet: new Ω.SpriteSheet("res/tiles.png", 32),
 
+		loaded: false,
+
 		init: function () {
 
 			$.ajax({
@@ -34,6 +36,8 @@
 				this.camera = new Ω.TrackingCamera(this.player, 0, 0, Ω.env.w, Ω.env.h);
 
 				this.painted = new PaintedScreen(this.map);
+
+				this.loaded = true;
 
 			});
 

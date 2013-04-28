@@ -168,13 +168,9 @@
 
 		},
 
-		hitBlocks: function (blocks) {
+		hitBlocks: function (blocks) {},
 
-		},
-
-		hit: function (by) {
-
-		},
+		hit: function (by) {},
 
 		render: function (gfx, map) {
 
