@@ -90,18 +90,9 @@
 					x1 += this.speed;
 				}
 			}
-			if (Ω.input.isDown("up")) {
-				if(Ω.input.pressed("down")){
-					Ω.input.release("up");
-				} else {
-					//y1 -= this.speed;
-				}
-			}
 			if (Ω.input.isDown("down")) {
-				if(Ω.input.pressed("up")){
-					Ω.input.release("down");
-				} else {
-					y1 += this.speed;
+				if (this.jumpspeed < 0) {
+					this.jumpspeed = 0;
 				}
 			}
 
