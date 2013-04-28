@@ -40,8 +40,8 @@
                  "type":"laser",
                  "visible":true,
                  "width":0,
-                 "x":544,
-                 "y":192
+                 "x":384,
+                 "y":96
                 }, 
                 {
                  "gid":49,
@@ -54,7 +54,21 @@
                  "type":"laser",
                  "visible":true,
                  "width":0,
-                 "x":288,
+                 "x":480,
+                 "y":128
+                }, 
+                {
+                 "gid":49,
+                 "height":0,
+                 "name":"pickup",
+                 "properties":
+                    {
+
+                    },
+                 "type":"laser",
+                 "visible":true,
+                 "width":0,
+                 "x":192,
                  "y":224
                 }],
          "opacity":1,

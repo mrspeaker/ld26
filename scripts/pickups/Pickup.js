@@ -10,13 +10,19 @@
 
 			this.x = x;
 			this.y = y;
+			this.got = false;
 
 		},
 
 		tick: function () {
 
-			return true;
+			return !this.got;
 
+		},
+
+		pickhit: function () {},
+		picked: function (p) {
+			this.got = true;
 		},
 
 		render: function (gfx) {

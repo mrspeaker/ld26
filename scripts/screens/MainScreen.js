@@ -35,6 +35,8 @@
 				this.player = new Player(player.x, player.y - 32, this);
 				this.player.setMap(this.map);
 
+				this.physics = new Ω.Physics();
+
 				this.pickups = pickups.map(function (pickup) {
 					var p = null;
 					switch (pickup.type) {
@@ -61,8 +63,9 @@
 			var self = this;
 
 			this.player.tick(this.map);
+
 			if (Math.random () < 0.01) {
-				this.addBullet(15 * 32, 3 * 32, Math.random() * (Math.PI * 2))
+				this.addBullet(15 * 32, 3 * 32, Math.random() * (Math.PI * 2));
 			}
 
 			this.pickups = this.pickups.filter(function (p) {
@@ -72,6 +75,8 @@
 			this.bullets = this.bullets.filter(function (b) {
 				return b.tick(self.map);
 			});
+
+			this.physics.checkCollision(this.player, this.pickups, "pickhit");
 
 			this.camera.tick();
 

@@ -52,6 +52,11 @@
 
 		},
 
+		pickhit: function (p) {
+
+			p.picked();
+		},
+
 		reset: function () {
 
 			this.jumpspeed = 0;
