@@ -53,7 +53,7 @@
 			this.jumpspeed = 0;
 			this.jumping = false;
 			this.wasJumping = false;
-			this.jumpdebounce = 0;
+			this.jumpdebounce = -1;
 			this.falling = true;
 			this.wasFalling = true;
 
@@ -123,7 +123,7 @@
 			}
 
 			if (Ω.input.isDown("jump")) {
-				if(!this.jumping && (--this.jumpdebounce < 0)) {
+				if(!this.jumping && this.jumpdebounce < 0) {
 					this.jump(true);
 					powpow = false;
 
@@ -136,6 +136,8 @@
 					this.jumpspeed = this.h;
 				}
 				y1 += this.jumpspeed;
+			} else {
+				this.jumpdebounce--;
 			}
 
 			this.move(x1, y1, map);

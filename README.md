@@ -27,7 +27,3 @@ A game by Mr Speaker for LD26
 
 ## Day 2 todo
 
-* fix bounce through bug
-* fix jumping de-bounce
-* Fix async load
-* wall climbing bug
