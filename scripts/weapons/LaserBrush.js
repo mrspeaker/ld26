@@ -6,6 +6,8 @@
 
 		shooting: false,
 
+		time: 500,
+
 		fire: function (angle) {
 
 			this.shooting = true;

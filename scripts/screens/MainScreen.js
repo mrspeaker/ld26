@@ -65,7 +65,7 @@
 			this.player.tick(this.map);
 
 			if (Math.random () < 0.01) {
-				this.addBullet(15 * 32, 3 * 32, Math.random() * (Math.PI * 2));
+				//this.addBullet(15 * 32, 3 * 32, Math.random() * (Math.PI * 2));
 			}
 
 			this.pickups = this.pickups.filter(function (p) {

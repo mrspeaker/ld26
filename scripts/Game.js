@@ -6,9 +6,9 @@
 
 		canvas: "#board",
 
-		init: function (w, h) {
+		init: function (w, h, col) {
 
-			this._super(w, h);
+			this._super(w, h, col);
 
 			Ω._progress = function (cur, max) {
 				// use for progress bar

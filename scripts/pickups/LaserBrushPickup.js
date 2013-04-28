@@ -7,7 +7,7 @@
 
 		render: function (gfx) {
 
-			this.sheet.render(gfx, 0, 0, this.x, this.y);
+			this.sheet.render(gfx, 0, 0, this.x, this.y + (Math.sin(Date.now() / 300) * 3));
 
 		}
 

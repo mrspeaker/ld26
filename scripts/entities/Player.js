@@ -52,11 +52,6 @@
 
 		},
 
-		pickhit: function (p) {
-
-			p.picked();
-		},
-
 		reset: function () {
 
 			this.jumpspeed = 0;
@@ -65,9 +60,9 @@
 			this.jumpdebounce = -1;
 			this.falling = true;
 			this.wasFalling = true;
-
-			this.weapons = [new VisionBrush(this), new LaserBrush(this)];
-			this.weaponIdx = 1;
+//new VisionBrush(this)
+			this.weapons = [null, null];
+			this.weaponIdx = 0;
 			this.weapon = this.weapons[this.weaponIdx];
 
 		},
@@ -114,8 +109,10 @@
 			}
 
 			if (Ω.input.pressed("fire")) {
-				this.particle.play(this.x + (this.w / 2), this.y + 10, this.angle);
-				this.weapon && this.weapon.fire(this.angle);
+				if (this.weapon) {
+					this.particle.play(this.x + (this.w / 2), this.y + 10, this.angle);
+					this.weapon.fire(this.angle);
+				}
 			}
 
 			if (!(Ω.input.isDown("fire")) && Ω.input.wasDown("fire")) {
@@ -194,6 +191,16 @@
 		hitBlocks: function (blocks) {},
 
 		hit: function (by) {},
+
+		pickhit: function (p) {
+
+			p.picked();
+
+			if (p instanceof LaserBrushPickup) {
+				this.weapons[1] = new LaserBrush(this);
+				this.setWeapon(1);
+			}
+		},
 
 		playNote: function () {
 
