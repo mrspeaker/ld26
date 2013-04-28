@@ -77,9 +77,14 @@
 
 		},
 
-		paint2: function (x, y, angle) {
+		paint_laser: function (x, y, angle) {
 
 			this.painted.paint(x, y, angle, true);
+		},
+
+		paint_vision: function (x, y, angle) {
+
+			this.painted.paint(x, y, angle, false);
 
 		},
 

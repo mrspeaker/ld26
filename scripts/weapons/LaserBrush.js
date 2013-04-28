@@ -34,7 +34,7 @@
 					this.hit.x *= screen.map.sheet.w;
 					this.hit.y *= screen.map.sheet.h;
 
-					screen.paint2(
+					screen.paint_laser(
 						this.hit.x,
 						this.hit.y,
 						this.angle);

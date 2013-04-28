@@ -10,7 +10,9 @@
 		jumpMaxSpeed: -20,
 		jumpPause: 9,
 
+		weaponIdx: 0,
 		weapon: null,
+		weapons: [null, null],
 
 		sounds: {
 			"note1": new Ω.Sound("res/audio/note1", 0.5, false),
@@ -59,7 +61,9 @@
 			this.falling = true;
 			this.wasFalling = true;
 
-			this.weapon = new LaserBrush(this);
+			this.weapons = [new VisionBrush(this), null];
+			this.weaponIdx = 0;
+			this.weapon = this.weapons[this.weaponIdx];
 
 		},
 
@@ -175,6 +179,11 @@
 			this.anims.tick();
 			this.particle.tick(angle);
 
+		},
+
+		setWeapon: function (idx) {
+			this.weaponIdx = idx;
+			this.weapon = this.weapons[idx];
 		},
 
 		hitBlocks: function (blocks) {},
