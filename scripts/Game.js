@@ -37,6 +37,7 @@
 		reset: function () {
 
 			Ω.Sound._reset();
+			Ω.input.reset();
 			this.setScreen(new MainScreen());
 
 		}
