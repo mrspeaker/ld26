@@ -220,13 +220,18 @@
 
 			gfx.ctx.fillStyle = "hsla(200, 50%, 50%, 0.8)";
 
+			// Head
 			this.sheet.render(gfx, this.headAt, 0, this.x + 2, this.y - 11);
 
+			// Body
 			this.sheet.render(gfx, 0, 2, this.x + 1, this.y - 3);
 			this.sheet.render(gfx, 0, 3, this.x +1, this.y + 11);
+
+			// Legs
 			this.anims.render(gfx, this.x + 1, this.y + 17);
 
-			this.sheet.render(gfx, this.headAt, 1, this.x + 2, this.y + (this.headAt > 0 && this.headAt < 4 ? -5 : 5));
+			// Arms
+			this.sheet.render(gfx, this.headAt + (this.weapon ? 8 : 0), 1, this.x + 2, this.y + (this.headAt > 0 && this.headAt < 4 ? -5 : 5));
 
 			this.weapon && this.weapon.render(gfx);
 

@@ -62,7 +62,7 @@
 				c.lineWidth = 10;
 
 				c.beginPath();
-				c.moveTo(this.user.x, this.user.y);
+				c.moveTo(this.user.x + (this.user.w / 2), this.user.y + 3);
 				c.lineTo(this.hit.x, this.hit.y);
 				c.closePath();
 				c.stroke();
@@ -71,7 +71,7 @@
 				c.lineWidth = 3;
 
 				c.beginPath();
-				c.moveTo(this.user.x, this.user.y);
+				c.moveTo(this.user.x + (this.user.w / 2), this.user.y + 3);
 				c.lineTo(this.hit.x, this.hit.y);
 				c.closePath();
 				c.stroke();

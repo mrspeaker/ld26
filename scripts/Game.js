@@ -23,6 +23,10 @@
 				[az ? "az_d" : "d", "right"],
 				[az ? "az_w" : "w", "jump"],
 				[az ? "az_s" : "s", "down"],
+				["left", "left"],
+				["right", "right"],
+				["up", "jump"],
+				["down", "down"],
 				["mouse1", "fire"]
 			]);
 
@@ -32,6 +36,7 @@
 
 		reset: function () {
 
+			Ω.Sound._reset();
 			this.setScreen(new MainScreen());
 
 		}
