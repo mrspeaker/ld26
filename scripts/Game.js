@@ -7,7 +7,7 @@
 		canvas: "#board",
 
 		level: 0,
-		levels: 1,
+		levels: 3,
 
 		init: function (w, h, col) {
 
@@ -43,7 +43,7 @@
 			Ω.Sound._reset();
 			Ω.input.reset();
 			this.level = 0;
-			this.setScreen(new WinScreen());//new LevelScreen(this.level));
+			this.setScreen(new LevelScreen(this.level));
 
 		},
 

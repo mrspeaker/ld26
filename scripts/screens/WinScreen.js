@@ -8,7 +8,6 @@
 
 		ticks: 0,
 
-
 		tick: function () {
 
 			this.ticks++;
