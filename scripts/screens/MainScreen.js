@@ -15,7 +15,7 @@
 				context: this
 			}).done(function (data) {
 
-				// For some reason data from tiles is 1 tile too high.
+				// For some reason som data from tiles is 1 tile too high.
 				// Hence the y-32 everywhere.
 
 				var mapped = [],
@@ -30,10 +30,18 @@
 
 				var entities = Ω.utils.getByKeyValue(data.layers, "name", "entities"),
 					player = Ω.utils.getByKeyValue(entities.objects, "name", "player_start"),
-					pickups = Ω.utils.getAllByKeyValue(entities.objects, "name", "pickup")
+					pickups = Ω.utils.getAllByKeyValue(entities.objects, "name", "pickup"),
+					door = Ω.utils.getByKeyValue(entities.objects, "name", "door"),
+					self = this;
 
 				this.player = new Player(player.x, player.y - 32, this);
 				this.player.setMap(this.map);
+
+				this.door = new Door(door.x, door.y, function () {
+
+					self.levelOver();
+
+				});
 
 				this.physics = new Ω.Physics();
 
@@ -77,8 +85,16 @@
 			});
 
 			this.physics.checkCollision(this.player, this.pickups, "pickhit");
+			this.physics.checkCollision(this.player, [this.door], "doorhit");
 
 			this.camera.tick();
+
+		},
+
+		levelOver: function () {
+
+			alert("win the game!");
+			game.reset();
 
 		},
 
@@ -118,7 +134,7 @@
 			c.fillStyle = "hsl(120, 3%, 0%)";
 			c.fillRect(0, 0, gfx.w, gfx.h);
 
-			this.camera.render(gfx, [this.painted, this.player, this.bullets, this.pickups]);
+			this.camera.render(gfx, [this.painted, this.player, this.bullets, this.pickups, this.door]);
 
 		}
 

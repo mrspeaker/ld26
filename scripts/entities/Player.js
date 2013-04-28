@@ -202,6 +202,11 @@
 			}
 		},
 
+		doorhit: function (d) {
+			//this.screen.levelOver();
+			//d.hitCb && d.hitCb();
+		},
+
 		playNote: function () {
 
 			var note = this.sounds["note" + (Math.random() * 4 + 1| 0)];

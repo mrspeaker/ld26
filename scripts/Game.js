@@ -28,6 +28,12 @@
 
 			this.setScreen(new MainScreen());
 
+		},
+
+		reset: function () {
+
+			this.setScreen(new MainScreen());
+
 		}
 
 	});
