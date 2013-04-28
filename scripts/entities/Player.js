@@ -7,6 +7,9 @@
 		w: 20,
 		h: 30,
 
+		jumpMaxSpeed: -20,
+		jumpPause: 9,
+
 		sounds: {
 			"note1": new Ω.Sound("res/audio/note1", 0.5, false),
 			"note2": new Ω.Sound("res/audio/note2", 0.5, false),
@@ -35,12 +38,36 @@
 
 			this.rays = [];
 
+			this.reset();
+
 		},
 
 		setMap: function (map) {
 
 			this.map = map;
 
+		},
+
+		reset: function () {
+
+			this.jumpspeed = 0;
+			this.jumping = false;
+			this.wasJumping = false;
+			this.jumpdebounce = 0;
+			this.falling = true;
+			this.wasFalling = true;
+
+		},
+
+		jump: function (doJump) {
+			if (doJump) {
+				this.jumping = true;
+				this.jumpspeed = this.jumpMaxSpeed;
+			} else {
+				this.jumping = false;
+				this.wasJumping = true;
+				this.jumpdebounce = this.jumpPause;
+			}
 		},
 
 		tick: function (map) {
@@ -80,7 +107,6 @@
 
 			if (Ω.input.pressed("fire")) {
 				this.particle.play(this.x + (this.w / 2), this.y + 10, this.angle);
-				//this.screen.addBullet(this.x, this.y - 10, this.angle);
 				powpow = true;
 			}
 
@@ -97,11 +123,11 @@
 			}
 
 			if (Ω.input.isDown("jump")) {
-				if(!this.jumping) {
-					this.jump();
+				if(!this.jumping && (--this.jumpdebounce < 0)) {
+					this.jump(true);
 					powpow = false;
-					var sound = this.sounds["note" + (Math.random() * 4 + 1| 0)];
-					sound.play();
+
+					this.playNote();
 				}
 			}
 
@@ -109,14 +135,14 @@
 				if(this.jumpspeed ++ > this.h) {
 					this.jumpspeed = this.h;
 				}
-				y1 += this.jumpspeed
+				y1 += this.jumpspeed;
 			}
 
 			this.move(x1, y1, map);
 
 			var feetBlocks = map.getBlocks([
 				[this.x, this.y + this.h + 1],
-				[this.x + this.w, this.y + this.h + 1]
+				[this.x + this.w - 1, this.y + this.h + 1]
 			]);
 
 			if (!this.falling) {
@@ -126,8 +152,10 @@
 			}
 			if (this.jumping) {
 				if(feetBlocks[0] || feetBlocks[1]) {
-					this.jumping = false;
+					this.jump(false);
 				}
+			} else if (this.wasJumping) {
+				this.wasJumping = false;
 			}
 
 			this.rays = [];
@@ -171,6 +199,13 @@
 		hitBlocks: function (blocks) {},
 
 		hit: function (by) {},
+
+		playNote: function () {
+
+			var note = this.sounds["note" + (Math.random() * 4 + 1| 0)];
+			note.play();
+
+		},
 
 		render: function (gfx, map) {
 
