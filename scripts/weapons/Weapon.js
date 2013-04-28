@@ -3,13 +3,19 @@
 
 	var Weapon = Ω.Class.extend({
 
-		fire: function () {
+		init: function (user) {
+
+			this.user = user;
 
 		},
 
-		hitSomething: function (e) {
+		tick: function (paintScreen) {},
 
-		}
+		fire: function (angle) {},
+
+		released: function () {},
+
+		render: function (gfx) {}
 
 	})
 

@@ -77,6 +77,12 @@
 
 		},
 
+		paint2: function (x, y, angle) {
+
+			this.painted.paint(x, y, angle, true);
+
+		},
+
 		render: function (gfx) {
 
 			var c = gfx.ctx;

@@ -2,7 +2,7 @@
 	"use strict";
 
 	// Used to shoot the cleaners
-	var Gun = Ω.Weapon.extend({
+	var Gun = Weapon.extend({
 
 	});
 

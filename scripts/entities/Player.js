@@ -10,6 +10,8 @@
 		jumpMaxSpeed: -20,
 		jumpPause: 9,
 
+		weapon: null,
+
 		sounds: {
 			"note1": new Ω.Sound("res/audio/note1", 0.5, false),
 			"note2": new Ω.Sound("res/audio/note2", 0.5, false),
@@ -32,8 +34,8 @@
 
 			this.anims = new Ω.Anims([
 				new Ω.Anim("idle", this.sheet, 500, [[1, 2]]),
-				new Ω.Anim("walk", this.sheet, 70, [[2, 2], [3, 2], [4, 2], [5, 2], [6, 2], [7, 2], [8, 2], [9, 2]]),
-				new Ω.Anim("awalkLeft", this.sheet, 70, [[8, 3], [7, 3], [6, 3], [5, 3], [4, 3], [3, 3], [2, 3], [1, 3]])
+				new Ω.Anim("walk", this.sheet, 30, [[2, 2], [3, 2], [4, 2], [5, 2], [6, 2], [7, 2], [8, 2], [9, 2]]),
+				new Ω.Anim("walkLeft", this.sheet, 30, [[8, 3], [7, 3], [6, 3], [5, 3], [4, 3], [3, 3], [2, 3], [1, 3]])
 			]);
 
 			this.rays = [];
@@ -57,24 +59,30 @@
 			this.falling = true;
 			this.wasFalling = true;
 
+			this.weapon = new LaserBrush(this);
+
 		},
 
 		jump: function (doJump) {
 			if (doJump) {
-				this.jumping = true;
-				this.jumpspeed = this.jumpMaxSpeed;
+				if(!this.jumping && this.jumpdebounce < 0) {
+					this.jumping = true;
+					this.jumpspeed = this.jumpMaxSpeed;
+
+					return true;
+				}
 			} else {
 				this.jumping = false;
 				this.wasJumping = true;
 				this.jumpdebounce = this.jumpPause;
 			}
+			return false;
 		},
 
 		tick: function (map) {
 
 			var x1 = 0,
-				y1 = 0,
-				powpow = this.powpow;
+				y1 = 0;
 
 			if (Ω.input.isDown("left")) {
 				if(Ω.input.pressed("right")){
@@ -98,15 +106,15 @@
 
 			if (Ω.input.pressed("fire")) {
 				this.particle.play(this.x + (this.w / 2), this.y + 10, this.angle);
-				powpow = true;
+				this.weapon && this.weapon.fire(this.angle);
 			}
 
 			if (!(Ω.input.isDown("fire")) && Ω.input.wasDown("fire")) {
-				powpow = false;
+				this.weapon && this.weapon.released();
 			}
 
 			if (x1 < 0) {
-				this.anims.setTo("awalkLeft");
+				this.anims.setTo("walkLeft");
 			} else if (x1 > 0) {
 				this.anims.setTo("walk");
 			} else {
@@ -114,10 +122,7 @@
 			}
 
 			if (Ω.input.isDown("jump")) {
-				if(!this.jumping && this.jumpdebounce < 0) {
-					this.jump(true);
-					powpow = false;
-
+				if(this.jump(true)) {
 					this.playNote();
 				}
 			}
@@ -166,26 +171,9 @@
 			this.angle = angle;
 			this.headAt = ((this.angle + Math.PI) / (Math.PI * 2 / 8)) % 8 | 0;
 
-			var hit = Ω.rays.cast(
-				angle,
-				ox,
-				oy,
-				this.map
-			);
-
-			if (hit) {
-				this.rays.push([
-					ox,
-					oy,
-					hit.x * this.map.sheet.w,
-					hit.y * this.map.sheet.h]);
-				this.screen.paint(hit.x * this.map.sheet.w, hit.y * this.map.sheet.h, angle, powpow);
-			}
-
+			this.weapon && this.weapon.tick(this.screen);
 			this.anims.tick();
 			this.particle.tick(angle);
-
-			this.powpow  = powpow;
 
 		},
 
@@ -204,13 +192,6 @@
 
 			var self = this;
 
-			//Test raycastin'
-			if (this.powpow) {
-				this.rays.forEach(function (r) {
-					Ω.rays.draw(gfx, r[0], r[1], r[2], r[3], r[4], 32, 32);
-				});
-			}
-
 			gfx.ctx.fillStyle = "hsla(200, 50%, 50%, 0.8)";
 
 			this.sheet.render(gfx, this.headAt, 0, this.x + 2, this.y - 11);
@@ -221,6 +202,7 @@
 
 			this.sheet.render(gfx, this.headAt, 1, this.x + 2, this.y + (this.headAt > 0 && this.headAt < 4 ? -5 : 5));
 
+			this.weapon && this.weapon.render(gfx);
 
 			this.particle.render(gfx);
 

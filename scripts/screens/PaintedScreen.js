@@ -46,7 +46,7 @@
 					yo = (y + Math.random() * (laserBlast ? 30 : 12)) + Math.sin(angle) * dist;
 
 				// var block = this.map.getBlocks([[xo, yo]])[0];
-				// if(!powpow && block < 1){
+				// if(!laserblast && block < 1){
 				//  	continue;
 				//  }
 
