@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="35" height="35" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="maintiles" tilewidth="32" tileheight="32">
-  <image source="tiles.png" width="256" height="64"/>
- </tileset>
- <tileset firstgid="17" name="ents" tilewidth="16" tileheight="32">
-  <image source="heads.png" width="256" height="64"/>
- </tileset>
- <tileset firstgid="49" name="pickups" tilewidth="32" tileheight="32">
-  <image source="pickups.png" width="256" height="64"/>
- </tileset>
+ <tileset firstgid="1" source="maintiles.tsx"/>
+ <tileset firstgid="17" source="ents.tsx"/>
+ <tileset firstgid="49" source="pickups.tsx"/>
  <layer name="main" width="35" height="35">
   <properties>
    <property name="requires_gun" value="true"/>

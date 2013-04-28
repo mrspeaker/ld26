@@ -6,6 +6,8 @@
 
 		canvas: "#board",
 
+		level: 0,
+
 		init: function (w, h, col) {
 
 			this._super(w, h, col);
@@ -30,7 +32,7 @@
 				["mouse1", "fire"]
 			]);
 
-			this.setScreen(new MainScreen());
+			this.reset();
 
 		},
 
@@ -38,8 +40,18 @@
 
 			Ω.Sound._reset();
 			Ω.input.reset();
-			this.setScreen(new MainScreen());
+			this.level = 0;
+			this.setScreen(new LevelScreen(this.level));
 
+		},
+
+		nextLevel: function () {
+			if (++this.level < 2) {
+				this.setScreen(new LevelScreen(this.level));
+			} else {
+				alert("YOU WON THE GAME!");
+				this.reset();
+			}
 		}
 
 	});
