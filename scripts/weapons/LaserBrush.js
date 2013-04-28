@@ -6,18 +6,22 @@
 
 		shooting: false,
 
+		sound: new Ω.Sound("res/audio/ray", 0.5, true),
+
 		time: 500,
 
 		fire: function (angle) {
 
 			this.shooting = true;
 			this.angle = angle;
+			this.sound.play();
 
 		},
 
 		released: function () {
 
 			this.shooting = false;
+			this.sound.rewind();
 
 		},
 

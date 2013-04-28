@@ -134,7 +134,7 @@
 			c.fillStyle = "hsl(120, 3%, 0%)";
 			c.fillRect(0, 0, gfx.w, gfx.h);
 
-			this.camera.render(gfx, [this.painted, this.player, this.bullets, this.pickups, this.door]);
+			this.camera.render(gfx, [this.map, this.door, this.painted, this.player, this.bullets, this.pickups]);
 
 		}
 

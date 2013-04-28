@@ -62,13 +62,8 @@
 
 		render: function (gfx, cam) {
 
-			var c = gfx.ctx;
-
-			c.save();
-
-			var co = c.globalCompositeOperation;
-
-			this.map.render(gfx, cam);
+			var c = gfx.ctx,
+				co = c.globalCompositeOperation;
 
 			c.globalCompositeOperation = "destination-in";
 
@@ -76,6 +71,11 @@
 				y1 = cam.y < 0 ? 0 : cam.y,
 				w1 = cam.x < 0 ? cam.w - cam.x : cam.w,
 				h1 = cam.y < 0 ? cam.h - cam.y : cam.h;
+
+
+			// FIXME: crashes to black if level too narrow!
+			// w1 = w1 > 640 ? 640 : w1;
+			// h1 = h1 > 480 ? 480 : h1;
 
 			//drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh)
 			gfx.ctx.drawImage(
@@ -96,7 +96,6 @@
 
 			c.globalCompositeOperation = co;
 
-			c.restore();
 		}
 	});
 
