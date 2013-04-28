@@ -11,7 +11,7 @@
 		tick: function () {
 
 			this.ticks++;
-			if(this.ticks > 100) {
+			if(this.ticks > 400) {
 				if (
 					Ω.input.pressed("fire") ||
 					Ω.input.pressed("jump")

@@ -1,0 +1,2 @@
+cat Ω.js utils/base.js utils/utils.js utils/rays.js utils/Timer.js gfx.js input.js assets/Image.js assets/Sound.js cameras/Camera.js cameras/TrackingCamera.js Physics.js effects/Particle.js effects/Spring.js effects/Shake.js screens/Screen.js screens/Dialog.js SpriteSheet.js anim/Anims.js anim/Anim.js maps/Map.js maps/IsoMap.js maps/RayCastMap.js entities/Entity.js Game.js >> omega.js
+

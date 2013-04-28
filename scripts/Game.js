@@ -9,13 +9,14 @@
 		level: 0,
 		levels: 3,
 
+		jumped: false,
+
 		init: function (w, h, col) {
 
 			this._super(w, h, col);
 
 			Ω._progress = function (cur, max) {
-				console.log(cur, max);
-				// use for progress bar
+				document.querySelector("#spinner").style.color = "hsl(331, 76%, " + (Math.random() * 40 + 20)  +"%)"
 			};
 
 			var az = urlParams.azerty;
@@ -39,6 +40,8 @@
 		},
 
 		reset: function () {
+
+			document.querySelector("#spinner").style.display = "none";
 
 			Ω.Sound._reset();
 			Ω.input.reset();

@@ -121,6 +121,7 @@
 				} else {
 					this.sounds.noweps.play();
 				}
+
 			}
 
 			if (!(Ω.input.isDown("fire")) && Ω.input.wasDown("fire")) {
@@ -138,6 +139,14 @@
 			if (Ω.input.isDown("jump")) {
 				if(this.jump(true)) {
 					this.playNote();
+				}
+			}
+
+			// Remove the help message from the start!
+			if (Ω.input.pressed("jump")) {
+				if (!game.jumped) {
+					game.jumped = true;
+					document.querySelector("#loading").style.display = "none";
 				}
 			}
 
