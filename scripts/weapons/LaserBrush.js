@@ -36,6 +36,8 @@
 					screen.map
 				);
 
+				this.angle = this.user.angle;
+
 				if (this.hit) {
 					this.hit.x *= screen.map.sheet.w;
 					this.hit.y *= screen.map.sheet.h;
@@ -61,8 +63,11 @@
 				c.strokeStyle = "rgba(255, 64, 156, 0.2)";
 				c.lineWidth = 10;
 
+				var xstart = this.user.x + (this.user.w / 2) + (Math.sin(Math.PI / 2 - this.angle) * 5),
+					ystart = this.user.y + (Math.cos(Math.PI / 2 - this.angle) * 5);
+
 				c.beginPath();
-				c.moveTo(this.user.x + (this.user.w / 2), this.user.y + 3);
+				c.moveTo(xstart, ystart);
 				c.lineTo(this.hit.x, this.hit.y);
 				c.closePath();
 				c.stroke();
@@ -71,7 +76,7 @@
 				c.lineWidth = 3;
 
 				c.beginPath();
-				c.moveTo(this.user.x + (this.user.w / 2), this.user.y + 3);
+				c.moveTo(xstart, ystart);
 				c.lineTo(this.hit.x, this.hit.y);
 				c.closePath();
 				c.stroke();

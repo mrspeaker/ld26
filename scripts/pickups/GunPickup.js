@@ -1,7 +1,7 @@
 (function (Ω) {
 	"use strict";
 
-	var LaserBrushPickup = Pickup.extend({
+	var GunPickup = Pickup.extend({
 
 		sheet: new Ω.SpriteSheet("res/pickups.png", 32),
 
@@ -16,11 +16,11 @@
 
 		render: function (gfx) {
 
-			this.sheet.render(gfx, 0, 0, this.x, this.y + (Math.sin(Date.now() / 300) * 3));
+			this.sheet.render(gfx, 0.1, 0, this.x, this.y + (Math.sin(Date.now() / 300) * 3));
 
 		}
 
 	});
 
-	window.LaserBrushPickup = LaserBrushPickup;
+	window.GunPickup = GunPickup;
 }(Ω));

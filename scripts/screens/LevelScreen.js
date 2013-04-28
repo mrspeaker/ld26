@@ -12,6 +12,8 @@
 
 		requiresGun: false,
 
+		spawner: null,
+
 		init: function (levelIdx) {
 
 			$.ajax({
@@ -24,6 +26,8 @@
 
 				var mapped = [],
 					mainLayer = Ω.utils.getByKeyValue(data.layers, "name", "main"),
+					entities = Ω.utils.getByKeyValue(data.layers, "name", "entities"),
+					maptities = Ω.utils.getByKeyValue(data.layers, "name", "maptities"),
 					cells =  mainLayer.data;
 
 				// Can't just "reach the door" on the first level
@@ -37,10 +41,10 @@
 
 				this.map = new Ω.Map(this.sheet, mapped);
 
-				var entities = Ω.utils.getByKeyValue(data.layers, "name", "entities"),
-					player = Ω.utils.getByKeyValue(entities.objects, "name", "player_start"),
+				var player = Ω.utils.getByKeyValue(entities.objects, "name", "player_start"),
 					pickups = Ω.utils.getAllByKeyValue(entities.objects, "name", "pickup"),
 					door = Ω.utils.getByKeyValue(entities.objects, "name", "door"),
+					spawner = Ω.utils.getByKeyValue(entities.objects, "name", "spawner"),
 					self = this;
 
 				this.player = new Player(player.x, player.y - 32, this);
@@ -60,6 +64,10 @@
 					this.door = new Ω.Entity(0, 0);
 				}
 
+				if (spawner) {
+					this.spawner = new Spawner(spawner.x, spawner.y);
+				}
+
 				this.physics = new Ω.Physics();
 
 				this.pickups = pickups.map(function (pickup) {
@@ -67,6 +75,9 @@
 					switch (pickup.type) {
 						case "laser":
 							p = new LaserBrushPickup(pickup.x, pickup.y - 32);
+							break;
+						case "gun":
+							p = new GunPickup(pickup.x, pickup.y - 32);
 							break;
 						default:
 							console.error("unkonwn pickup type", pickup.type)
@@ -109,6 +120,9 @@
 			this.bullets = this.bullets.filter(function (b) {
 				return b.tick(self.map);
 			});
+
+
+			this.spawner && this.spawner.tick();
 
 			this.physics.checkCollision(this.player, this.pickups, "pickhit");
 			this.physics.checkCollision(this.player, [this.door], "doorhit");
@@ -159,7 +173,7 @@
 			c.fillStyle = "hsl(120, 3%, 0%)";
 			c.fillRect(0, 0, gfx.w, gfx.h);
 
-			this.camera.render(gfx, [this.map, this.door, this.painted, this.player, this.bullets, this.pickups]);
+			this.camera.render(gfx, [this.map, this.door, this.spawner, this.painted, this.player, this.bullets, this.pickups]);
 
 		}
 

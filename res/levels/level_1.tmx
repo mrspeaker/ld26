@@ -4,6 +4,9 @@
  <tileset firstgid="17" source="ents.tsx"/>
  <tileset firstgid="49" source="pickups.tsx"/>
  <layer name="main" width="40" height="40">
+  <properties>
+   <property name="requires_gun" value="true"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJztluEKgCAMhDft/Z+5Pw7WMFx4A6H7YEiRt9MtS0VEN6NJHR2goQCNSu1Kf4j9+3N9T/d3ev+htC+QTqSP8OdZlubmVhG9md8V3lPl+2ue2ojMPkb/1f1n36i4l7O82XsoorfurjO9pfJcV3ZeFqup143jW674TKwB0p8fZ/6+5kP582vf/c9a9S4hhBBCCCGEEELm3G01ANM=
   </data>
@@ -12,5 +15,10 @@
   <object name="player_start" gid="17" x="640" y="480"/>
   <object name="pickup" type="laser" gid="49" x="128" y="256"/>
   <object name="door" x="544" y="224" width="32" height="32"/>
+  <object name="pickup" type="gun" x="320" y="416" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="maptities" width="40" height="40">
+  <object name="spikes" gid="7" x="64" y="256"/>
+  <object name="spikes" gid="7" x="64" y="256"/>
  </objectgroup>
 </map>

@@ -217,6 +217,11 @@
 				this.weapons[1] = new LaserBrush(this);
 				this.setWeapon(1);
 			}
+
+			if (p instanceof GunPickup) {
+				this.weapons[0] = new VisionBrush(this);
+				this.setWeapon(0);
+			}
 		},
 
 		doorhit: function (d) {

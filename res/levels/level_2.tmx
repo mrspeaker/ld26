@@ -5,12 +5,13 @@
  <tileset firstgid="49" source="pickups.tsx"/>
  <layer name="main" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt1TEKgDAMBdBKXbz/hXVQLDg0DpKA70G2wP+kQ1u7LS8mQzRXv6f1mC24m3m/SHZ2v1l+hX5jh37OuJchktuDe1+Y5V43rNivyvtW/j8AAAAA+J8dRvoASg==
+   eJzt1eEKgDAIRtG1/Yje/4UjmiBhy4UbQfeArED0o4JSOi3BFc0z07t3dj55Jjlg1luyX0rz5tKzorVmZtUT+R30sGau9bzme9o/I5/OYeXT/aXWrHzH9abus9Fzpzj7emV1WpUceyXbyHwtrb0626j3++X/BwAAAAAAAP5pB+rBAI8=
   </data>
  </layer>
  <objectgroup name="entities" width="40" height="40">
-  <object name="player_start" gid="17" x="160" y="320"/>
-  <object name="pickup" type="laser" gid="49" x="288" y="192"/>
-  <object name="door" x="96" y="96" width="32" height="32"/>
+  <object name="player_start" gid="17" x="416" y="320"/>
+  <object name="pickup" type="laser" gid="49" x="544" y="192"/>
+  <object name="door" x="192" y="224" width="32" height="32"/>
+  <object name="spawner" x="192" y="96" width="32" height="32"/>
  </objectgroup>
 </map>
