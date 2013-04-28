@@ -18,7 +18,10 @@
 			"note1": new Ω.Sound("res/audio/note1", 0.5, false),
 			"note2": new Ω.Sound("res/audio/note2", 0.5, false),
 			"note3": new Ω.Sound("res/audio/note3", 0.5, false),
-			"note4": new Ω.Sound("res/audio/note4", 0.5, false)
+			"note4": new Ω.Sound("res/audio/note4", 0.5, false),
+			"click1": new Ω.Sound("res/audio/click1", 0.5, false),
+			"click2": new Ω.Sound("res/audio/click2", 0.5, false),
+			"click3": new Ω.Sound("res/audio/click3", 0.5, false)
 		},
 
 		sheet: new Ω.SpriteSheet("res/heads.png", 16),
@@ -88,6 +91,8 @@
 			var x1 = 0,
 				y1 = 0;
 
+			this.wasFalling = this.falling;
+
 			if (Ω.input.isDown("left")) {
 				if(Ω.input.pressed("right")){
 					Ω.input.release("left");
@@ -153,7 +158,12 @@
 				if(feetBlocks[0] === 0 && feetBlocks[1] === 0){
 					this.falling = true;
 				}
+
+				if (this.wasFalling) {
+					this.playClick();
+				}
 			}
+
 			if (this.jumping) {
 				if(feetBlocks[0] || feetBlocks[1]) {
 					this.jump(false);
@@ -211,6 +221,13 @@
 
 			var note = this.sounds["note" + (Math.random() * 4 + 1| 0)];
 			note.play();
+
+		},
+
+		playClick: function () {
+
+			var click = this.sounds["click" + (Math.random() * 3 + 1| 0)];
+			click.play();
 
 		},
 

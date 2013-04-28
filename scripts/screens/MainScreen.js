@@ -6,6 +6,8 @@
 
 		sheet: new Ω.SpriteSheet("res/tiles.png", 32),
 
+		sound: new Ω.Sound("res/audio/tickle", 0.5, true),
+
 		loaded: false,
 
 		init: function () {
@@ -59,6 +61,11 @@
 				this.painted = new PaintedScreen(this.map);
 
 				this.loaded = true;
+
+				setTimeout(function () {
+					self.sound.play();
+				}, 3000);
+
 
 			});
 

@@ -77,6 +77,11 @@
 			// w1 = w1 > 640 ? 640 : w1;
 			// h1 = h1 > 480 ? 480 : h1;
 
+
+			// Could sine move the backtround...
+			var xo = 0, //Math.sin(Date.now()/110) * 5,
+				yo = 0; //Math.sin(Date.now()/900) * 5;
+
 			//drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh)
 			gfx.ctx.drawImage(
 				this.ctx.canvas,
@@ -84,8 +89,8 @@
 				y1,
 				w1,
 				h1,
-				x1,
-				y1,
+				x1 + xo,
+				y1  +yo,
 				w1,
 				h1);
 
