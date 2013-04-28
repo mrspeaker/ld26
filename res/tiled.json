@@ -28,6 +28,34 @@
                  "width":0,
                  "x":576,
                  "y":192
+                }, 
+                {
+                 "gid":49,
+                 "height":0,
+                 "name":"pickup",
+                 "properties":
+                    {
+
+                    },
+                 "type":"laser",
+                 "visible":true,
+                 "width":0,
+                 "x":544,
+                 "y":192
+                }, 
+                {
+                 "gid":49,
+                 "height":0,
+                 "name":"pickup",
+                 "properties":
+                    {
+
+                    },
+                 "type":"laser",
+                 "visible":true,
+                 "width":0,
+                 "x":288,
+                 "y":224
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -72,6 +100,21 @@
          "spacing":0,
          "tileheight":32,
          "tilewidth":16
+        }, 
+        {
+         "firstgid":49,
+         "image":"pickups.png",
+         "imageheight":64,
+         "imagewidth":256,
+         "margin":0,
+         "name":"pickups",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tileheight":32,
+         "tilewidth":32
         }],
  "tilewidth":32,
  "version":1,

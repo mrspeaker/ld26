@@ -15,6 +15,9 @@
 				context: this
 			}).done(function (data) {
 
+				// For some reason data from tiles is 1 tile too high.
+				// Hence the y-32 everywhere.
+
 				var mapped = [],
 					mainLayer = Ω.utils.getByKeyValue(data.layers, "name", "main"),
 					cells =  mainLayer.data;
@@ -26,10 +29,21 @@
 				this.map = new Ω.Map(this.sheet, mapped);
 
 				var entities = Ω.utils.getByKeyValue(data.layers, "name", "entities"),
-					player = Ω.utils.getByKeyValue(entities.objects, "name", "player_start");
+					player = Ω.utils.getByKeyValue(entities.objects, "name", "player_start"),
+					pickups = Ω.utils.getAllByKeyValue(entities.objects, "name", "pickup")
 
-				this.player = new Player(player.x, player.y, this);
+				this.player = new Player(player.x, player.y - 32, this);
 				this.player.setMap(this.map);
+
+				this.pickups = pickups.map(function (pickup) {
+					var p = null;
+					switch (pickup.type) {
+						case "laser":
+							p = new LaserBrushPickup(pickup.x, pickup.y - 32);
+							break;
+					}
+					return p;
+				});
 
 				this.camera = new Ω.TrackingCamera(this.player, 0, 0, Ω.env.w, Ω.env.h);
 				this.painted = new PaintedScreen(this.map);
@@ -50,6 +64,10 @@
 			if (Math.random () < 0.01) {
 				this.addBullet(15 * 32, 3 * 32, Math.random() * (Math.PI * 2))
 			}
+
+			this.pickups = this.pickups.filter(function (p) {
+				return p.tick();
+			});
 
 			this.bullets = this.bullets.filter(function (b) {
 				return b.tick(self.map);
@@ -95,7 +113,7 @@
 			c.fillStyle = "hsl(120, 3%, 0%)";
 			c.fillRect(0, 0, gfx.w, gfx.h);
 
-			this.camera.render(gfx, [this.painted, this.player, this.bullets]);
+			this.camera.render(gfx, [this.painted, this.player, this.bullets, this.pickups]);
 
 		}
 

@@ -61,8 +61,8 @@
 			this.falling = true;
 			this.wasFalling = true;
 
-			this.weapons = [new VisionBrush(this), null];
-			this.weaponIdx = 0;
+			this.weapons = [new VisionBrush(this), new LaserBrush(this)];
+			this.weaponIdx = 1;
 			this.weapon = this.weapons[this.weaponIdx];
 
 		},
