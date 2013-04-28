@@ -5,7 +5,7 @@
 
 		sheet: new Ω.SpriteSheet("res/pickups.png", 32),
 
-		sound: new Ω.Sound("res/audio/stab", 0.5, false),
+		sound: new Ω.Sound("res/audio/stab", 0.9, false),
 
 		picked: function (p) {
 			this._super();

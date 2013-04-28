@@ -6,7 +6,7 @@
 
 		shooting: false,
 
-		sound: new Ω.Sound("res/audio/ray", 0.5, true),
+		sound: new Ω.Sound("res/audio/ray", 0.9, true),
 
 		time: 500,
 
