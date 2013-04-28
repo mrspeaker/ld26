@@ -22,7 +22,7 @@
 
 		},
 
-		paint: function (x, y, 	angle, laserBlast) {
+		paint: function (x, y, 	angle, laserBlast, erase) {
 
 			var c = this.ctx,
 				size,
@@ -30,6 +30,11 @@
 				amount = Math.random() * (laserBlast ? 20 : 1) + (laserBlast ? 4 : 1),
 				col = "hsla(" + (Math.random() * 90 | 0) + ", 0%, " + (Math.random() * 50 + 50 | 0)  +"%, " + ((Math.random().toFixed(2) * 0.5) + 0.5) + ")";
 
+			var cc;
+			if(erase) {
+				cc = c.globalCompositeOperation;
+				c.globalCompositeOperation = "destination-out";
+			}
 			for(var i = 0; i < amount; i++) {
 
 				if (laserBlast) {
@@ -45,17 +50,14 @@
 				var xo = (x + Math.random() * (laserBlast ? 30 : 12))  + Math.cos(angle) * dist,
 					yo = (y + Math.random() * (laserBlast ? 30 : 12)) + Math.sin(angle) * dist;
 
-				// var block = this.map.getBlocks([[xo, yo]])[0];
-				// if(!laserblast && block < 1){
-				//  	continue;
-				//  }
-
 				c.fillStyle = col;
 				c.beginPath();
 				c.arc(xo, yo, size, 0, Math.PI*2, false);
 				c.closePath();
 				c.fill();
-
+			}
+			if(erase) {
+				c.globalCompositeOperation = cc;
 			}
 
 		},

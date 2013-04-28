@@ -59,20 +59,6 @@
                  "width":32,
                  "x":544,
                  "y":224
-                }, 
-                {
-                 "gid":49,
-                 "height":0,
-                 "name":"pickup",
-                 "properties":
-                    {
-
-                    },
-                 "type":"gun",
-                 "visible":true,
-                 "width":0,
-                 "x":320,
-                 "y":448
                 }],
          "opacity":1,
          "type":"objectgroup",

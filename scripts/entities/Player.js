@@ -19,9 +19,9 @@
 			"note2": new Ω.Sound("res/audio/note2", 0.8, false),
 			"note3": new Ω.Sound("res/audio/note3", 0.8, false),
 			"note4": new Ω.Sound("res/audio/note4", 0.8, false),
-			"click1": new Ω.Sound("res/audio/click1", 0.7, false),
-			"click2": new Ω.Sound("res/audio/click2", 0.4, false),
-			"click3": new Ω.Sound("res/audio/click3", 0.7, false),
+			"click1": new Ω.Sound("res/audio/click1", 0.1, false),
+			"click2": new Ω.Sound("res/audio/click2", 0.2, false),
+			"click3": new Ω.Sound("res/audio/click3", 0.4, false),
 			"noweps": new Ω.Sound("res/audio/noweps", 0.4, false)
 		},
 
@@ -238,7 +238,8 @@
 
 		playClick: function () {
 
-			var click = this.sounds["click" + (Math.random() * 3 + 1| 0)];
+			var click = this.sounds["click" + (Math.random() * 3 + 1 | 0)];
+			console.log("click" + (Math.random() * 3 + 1 | 0));
 			click.play();
 
 		},

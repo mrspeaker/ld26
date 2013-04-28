@@ -16,6 +16,8 @@
 
 		init: function (levelIdx) {
 
+			this.hitz = [];
+
 			$.ajax({
 				url: "res/levels/level_" + (levelIdx + 1) + ".json",
 				context: this
@@ -65,7 +67,9 @@
 				}
 
 				if (spawner) {
-					this.spawner = new Spawner(spawner.x, spawner.y);
+					var sp_rate = (spawner.properties && spawner.properties.rate) || 200,
+						sp_delay =  (spawner.properties && spawner.properties.delay) || 2000;
+					this.spawner = new Spawner(spawner.x, spawner.y, sp_rate, sp_delay, this);
 				}
 
 				this.physics = new Ω.Physics();
@@ -160,6 +164,12 @@
 			this.painted.paint(x, y, angle, true);
 		},
 
+		unpaint: function (x, y) {
+
+			this.painted.paint(x, y, 0, true, true);
+
+		},
+
 		paint_vision: function (x, y, angle) {
 
 			this.painted.paint(x, y, angle, false);
@@ -173,7 +183,7 @@
 			c.fillStyle = "hsl(120, 3%, 0%)";
 			c.fillRect(0, 0, gfx.w, gfx.h);
 
-			this.camera.render(gfx, [this.map, this.door, this.spawner, this.painted, this.player, this.bullets, this.pickups]);
+			this.camera.render(gfx, [this.map, this.door, this.painted, this.player, this.bullets, this.pickups, this.spawner]);
 
 		}
 

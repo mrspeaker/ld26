@@ -13,5 +13,6 @@
   <object name="pickup" type="laser" gid="49" x="544" y="192"/>
   <object name="door" x="192" y="224" width="32" height="32"/>
   <object name="spawner" x="192" y="96" width="32" height="32"/>
+  <object name="pickup" type="gun" gid="49" x="320" y="64"/>
  </objectgroup>
 </map>

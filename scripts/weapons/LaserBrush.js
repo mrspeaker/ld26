@@ -46,6 +46,8 @@
 						this.hit.x,
 						this.hit.y,
 						this.angle);
+
+					screen.hitz.push([this.hit.x, this.hit.y]);
 				}
 
 			} else {
