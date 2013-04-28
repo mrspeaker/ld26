@@ -23,3 +23,11 @@ A game by Mr Speaker for LD26
 
 * baddies....
 * levels are a bit crazy: elevators, slides, teleporters, curved ladders
+
+
+## Day 2 todo
+
+* fix bounce through bug
+* fix jumping de-bounce
+* Fix async load
+* wall climbing bug

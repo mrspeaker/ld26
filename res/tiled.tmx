@@ -8,10 +8,10 @@
  </tileset>
  <layer name="main" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt10EKAyEMAMBauv3/k3sqSKq4u8lB6AwIekgOCQZtjzqtMNe/ulrDd2EufunHXlrYr9YRzjGWnKt17O9HjNOPvEw/RrnIqejHaH5xz6yOz8k6FrnIMa/2knnvjt5f5Ph/7GVVw1c4f/sxitOPvDN/wH4Wze6HeVWjr2P8b8f9mX4BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAjj472ACj
+   eJzt2G0LgyAQAOBe1v7/T96CBuKyrk7GPjwPHIShxB1qOg7DMJ7E9I55i6lon6tY28jpmUP1yFOP/zJWz2exFM/1OOqRdzWHz4O+6pG35vCxRcTz4J165GXmRzmG9aqPev/4mBqxBMfinh7z4+5YfGv9R7XU+3m0HzF7ObxSj2g/Yu7Wo3UGIafX/mG96qO8L9y7QyzvEs/O7vOPvx0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiXlF+AMk=
   </data>
  </layer>
  <objectgroup name="entities" width="100" height="100">
-  <object name="player_start" gid="17" x="584" y="187"/>
+  <object name="player_start" gid="17" x="576" y="192"/>
  </objectgroup>
 </map>

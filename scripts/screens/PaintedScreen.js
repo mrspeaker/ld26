@@ -30,13 +30,14 @@
 		paint: function (x, y, 	angle, powpow) {
 
 			if (!powpow) {
-				return;
+				//console.log("anyone capp this?");
+				//return;
 			}
 
 			var c = this.ctx,
 				size,
 				dist,
-				amount = Math.random() * (powpow ? 20 : 3) + 4,
+				amount = Math.random() * (powpow ? 20 : 1) + (powpow ? 4 : 1),
 				col = "hsla(" + (Math.random() * 90 | 0) + ", 0%, " + (Math.random() * 50 + 50 | 0)  +"%, " + ((Math.random().toFixed(2) * 0.5) + 0.5) + ")";
 
 			for(var i = 0; i < amount; i++) {
@@ -47,8 +48,8 @@
 					size = Math.random() * 10 + 2 | 0;
 				} else {
 
-					dist = Math.random() * 20 + 4;
-					size = Math.random() * 5 + 1 | 0;
+					dist = Math.random() * 2 + 2;
+					size = Math.random() * 2 + 1 | 0;
 				}
 
 				var xo = (x + Math.random() * (powpow ? 30 : 12))  + Math.cos(angle) * dist,

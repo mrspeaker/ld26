@@ -18,13 +18,10 @@
 
 		init: function (startX, startY, screen) {
 
-			// FIXME: need event system (or something) instead of this.
 			this.screen = screen;
 
 			this.x = startX;
 			this.y = startY;
-			this.yPow = 0;
-
 			this.speed = 3;
 			this.headAt = 0;
 
@@ -36,14 +33,14 @@
 				new Ω.Anim("awalkLeft", this.sheet, 70, [[8, 3], [7, 3], [6, 3], [5, 3], [4, 3], [3, 3], [2, 3], [1, 3]])
 			]);
 
-			this.anims.set("idle");
-
 			this.rays = [];
 
 		},
 
 		setMap: function (map) {
+
 			this.map = map;
+
 		},
 
 		tick: function (map) {
@@ -81,14 +78,6 @@
 				}
 			}
 
-			if (x1 < 0) {
-				this.anims.setTo("awalkLeft");
-			} else if (x1 > 0) {
-				this.anims.setTo("walk");
-			} else {
-				this.anims.setTo("idle");
-			}
-
 			if (Ω.input.pressed("fire")) {
 				this.particle.play(this.x + (this.w / 2), this.y + 10, this.angle);
 				//this.screen.addBullet(this.x, this.y - 10, this.angle);
@@ -97,6 +86,14 @@
 
 			if (!(Ω.input.isDown("fire")) && Ω.input.wasDown("fire")) {
 				powpow = false;
+			}
+
+			if (x1 < 0) {
+				this.anims.setTo("awalkLeft");
+			} else if (x1 > 0) {
+				this.anims.setTo("walk");
+			} else {
+				this.anims.setTo("idle");
 			}
 
 			if (Ω.input.isDown("jump")) {
@@ -133,21 +130,20 @@
 				}
 			}
 
-			// Test raycastin'
 			this.rays = [];
 
 			var ox = this.x + this.w / 2,
 				oy = this.y + this.h * 0.2,
 				angle = Ω.utils.angleBetween({
-					x: (Ω.input.mouse.x + this.screen.camera.x), // * (640 / window.innerWidth),
-					y: (Ω.input.mouse.y + this.screen.camera.y) //* (480 / window.innerHeight)
+					x: (Ω.input.mouse.x + this.screen.camera.x),
+					y: (Ω.input.mouse.y + this.screen.camera.y)
 				}, {
 					x: ox,
 					y: oy
 				});
 
 			this.angle = angle;
-			this.headAt = (angle / (2 * Math.PI / 8) | 0) + 3;
+			this.headAt = ((this.angle + Math.PI) / (Math.PI * 2 / 8)) % 8 | 0;
 
 			var hit = Ω.rays.cast(
 				angle,
@@ -198,7 +194,6 @@
 			this.sheet.render(gfx, 0, 2, this.x + 1, this.y - 3);
 			this.sheet.render(gfx, 0, 3, this.x +1, this.y + 11);
 			this.anims.render(gfx, this.x + 1, this.y + 17);
-
 
 			this.sheet.render(gfx, this.headAt, 1, this.x + 2, this.y + (this.headAt > 0 && this.headAt < 4 ? -5 : 5));
 
