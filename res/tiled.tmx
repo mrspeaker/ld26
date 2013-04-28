@@ -10,12 +10,15 @@
   <image source="pickups.png" width="256" height="64"/>
  </tileset>
  <layer name="main" width="35" height="35">
+  <properties>
+   <property name="requires_gun" value="true"/>
+  </properties>
   <data encoding="base64" compression="zlib">
-   eJztltEKwCAIRSv//5+3YIKIszWuL3EPCCPqchAX9dZaX9S4S54abl2/ESByBJAxoUvMaS4DkDE5rS8opouY2nGzdxDKJcrfOVc1L3rHZvnRmQoXe9dHMxn1rGp2bV/UK+PLnr8u3uOtP9YD5eJzJKlsH4LVeyF7M6D/aUIIIYQQQtBc1sIAyw==
+   eJztllEKgDAMQ7fO+59ZCw5CqRub+Rp5EBQpXQi1WkspdSJ71F5ZeN7vGTD6NEIPR15yTvNihB7Oabk4F6GHe2mgFW+4gxjgzlrZXVjDnBfMpO/YUf/olenla9dnM5llxpxdnBcL19k5mGnUrpcsk1E+6KPXoXa84LcXPWRaYTeX3X+GrK7Xst5zIYQQQggh/nADgrsBAQ==
   </data>
  </layer>
  <objectgroup name="entities" width="35" height="35">
-  <object name="player_start" gid="17" x="384" y="480"/>
+  <object name="player_start" gid="17" x="640" y="480"/>
   <object name="pickup" type="laser" gid="49" x="128" y="256"/>
   <object name="door" x="544" y="224" width="32" height="32"/>
  </objectgroup>

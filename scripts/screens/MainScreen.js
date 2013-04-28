@@ -10,6 +10,8 @@
 
 		loaded: false,
 
+		requiresGun: false,
+
 		init: function () {
 
 			$.ajax({
@@ -23,6 +25,11 @@
 				var mapped = [],
 					mainLayer = Ω.utils.getByKeyValue(data.layers, "name", "main"),
 					cells =  mainLayer.data;
+
+				// Can't just "reach the door" on the first level
+				if (mainLayer.properties.requires_gun){
+					this.requiresGun = true;
+				}
 
 				while (cells.length > 0) {
 				    mapped.push(cells.splice(0, mainLayer.width));
@@ -41,7 +48,10 @@
 
 				this.door = new Door(door.x, door.y, function () {
 
-					self.levelOver();
+					if (!self.requiresGun || self.player.weapons[1]) {
+						self.door.sound.play(); // TODO: move sound here.
+						self.levelOver();
+					}
 
 				});
 
@@ -62,9 +72,10 @@
 
 				this.loaded = true;
 
+				// wtf? getting dom exc. so wrappied in timeout
 				setTimeout(function () {
 					self.sound.play();
-				}, 3000);
+				}, 1000);
 
 
 			});

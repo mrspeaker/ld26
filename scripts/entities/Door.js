@@ -21,10 +21,11 @@
 
 		doorhit: function (){
 
-			this.sound.play();
-			this.hitCb && this.hitCb();
+			this.hitCb && this.hitCb()
 
 		}
+
+
 
 	});
 

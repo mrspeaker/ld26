@@ -21,7 +21,8 @@
 			"note4": new Ω.Sound("res/audio/note4", 0.5, false),
 			"click1": new Ω.Sound("res/audio/click1", 0.5, false),
 			"click2": new Ω.Sound("res/audio/click2", 0.5, false),
-			"click3": new Ω.Sound("res/audio/click3", 0.5, false)
+			"click3": new Ω.Sound("res/audio/click3", 0.5, false),
+			"noweps": new Ω.Sound("res/audio/noweps", 0.2, false)
 		},
 
 		sheet: new Ω.SpriteSheet("res/heads.png", 16),
@@ -117,6 +118,8 @@
 				if (this.weapon) {
 					this.particle.play(this.x + (this.w / 2), this.y + 10, this.angle);
 					this.weapon.fire(this.angle);
+				} else {
+					this.sounds.noweps.play();
 				}
 			}
 
@@ -147,7 +150,11 @@
 				this.jumpdebounce--;
 			}
 
-			this.move(x1, y1, map);
+			var moved = this.move(x1, y1, map);
+			if (moved[0] === 0 && moved[1] === 0) {
+				// blocked
+				this.anims.setTo("idle");
+			}
 
 			var feetBlocks = map.getBlocks([
 				[this.x, this.y + this.h + 1],
