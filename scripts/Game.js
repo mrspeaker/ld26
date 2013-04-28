@@ -7,12 +7,14 @@
 		canvas: "#board",
 
 		level: 0,
+		levels: 1,
 
 		init: function (w, h, col) {
 
 			this._super(w, h, col);
 
 			Ω._progress = function (cur, max) {
+				console.log(cur, max);
 				// use for progress bar
 			};
 
@@ -41,16 +43,15 @@
 			Ω.Sound._reset();
 			Ω.input.reset();
 			this.level = 0;
-			this.setScreen(new LevelScreen(this.level));
+			this.setScreen(new WinScreen());//new LevelScreen(this.level));
 
 		},
 
 		nextLevel: function () {
-			if (++this.level < 2) {
+			if (++this.level < this.levels) {
 				this.setScreen(new LevelScreen(this.level));
 			} else {
-				alert("YOU WON THE GAME!");
-				this.reset();
+				this.setScreen(new WinScreen());
 			}
 		}
 

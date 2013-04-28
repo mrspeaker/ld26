@@ -23,7 +23,7 @@
 				context: this
 			}).done(function (data) {
 
-				// For some reason som data from tiles is 1 tile too high.
+				// For some reason som data from Tiled is 1 tile too high.
 				// Hence the y-32 everywhere.
 
 				var mapped = [],
@@ -56,6 +56,7 @@
 					this.door = new Door(door.x, door.y, function () {
 
 						if (!self.requiresGun || self.player.weapons[1]) {
+							Ω.Sound._reset();
 							self.door.sound.play(); // TODO: move sound here.
 							self.levelOver();
 						}
@@ -67,9 +68,10 @@
 				}
 
 				if (spawner) {
-					var sp_rate = (spawner.properties && spawner.properties.rate) || 200,
-						sp_delay =  (spawner.properties && spawner.properties.delay) || 2000;
-					this.spawner = new Spawner(spawner.x, spawner.y, sp_rate, sp_delay, this);
+					var sp_rate = (spawner.properties && spawner.properties.rate) || 250,
+						sp_delay =  (spawner.properties && spawner.properties.delay) || 2000,
+						sp_bugspeed =  (spawner.properties && spawner.properties.bugspeed) || 4;
+					this.spawner = new Spawner(spawner.x, spawner.y, sp_rate, sp_delay, sp_bugspeed, this);
 				}
 
 				this.physics = new Ω.Physics();

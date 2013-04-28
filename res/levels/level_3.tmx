@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="40" height="50" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" source="maintiles.tsx"/>
+ <tileset firstgid="17" source="ents.tsx"/>
+ <tileset firstgid="49" source="pickups.tsx"/>
+ <layer name="main" width="40" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmNEKgCAMRTUD//+PI2Kwh5mrhdviHtjLeTqgqFjKxTaYKEgt6NMjrWu0Po3zAn02qKULLgLU0thE7Js5L9Bng7d0wXmD+8MG+mxk6cP99o4s6ztzXqDPBvpsZHi/8LOPXBQyre+d8wJ9NrL0RX9fRf0/bUrnRaa+ztzo33z1PjhbKhtyGlb1aZyEV98T9k8qxjRhqnIinUMAAPAXDkBvAUc=
+  </data>
+ </layer>
+ <objectgroup name="entities" width="40" height="50">
+  <object name="player_start" gid="17" x="96" y="96"/>
+  <object name="pickup" type="laser" gid="49" x="160" y="96"/>
+  <object name="door" gid="9" x="544" y="1312"/>
+  <object name="spawner" x="192" y="1056" width="32" height="32">
+   <properties>
+    <property name="delay" value="40"/>
+    <property name="rate" value="500"/>
+    <property name="speed" value="4"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

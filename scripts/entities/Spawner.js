@@ -3,6 +3,8 @@
 
 	var Spawner = Ω.Entity.extend({
 
+		sound: new Ω.Sound("res/audio/bug", 0.6, false),
+
 		active: true,
 		ticks: 0,
 
@@ -10,28 +12,27 @@
 
 		cleaners: [],
 
-		init: function (x, y, rate, delay, level) {
+		init: function (x, y, rate, delay, bugspeed, level) {
 
 			this.x = x;
 			this.y = y;
 
 			this.rate = rate;
 			this.delay = delay;
-			console.log(this.rate, this.delay);
+			this.bugspeed = bugspeed;
 
 			this.level = level;
 		},
 
 		tick: function () {
 
-			console.log(this.ticks++ < this.delay);
 			if (this.ticks++ < this.delay) {
 				return true;
 			}
 
 			if(this.ticks % this.rate === 0) {
-				console.log("spawned.", this.cleaners.length);
-				this.cleaners.push(new Cleaner(this.x, this.y, this.level));
+				this.sound.play();
+				this.cleaners.push(new Cleaner(this.x, this.y, this.bugspeed, this.level));
 			};
 
 			this.cleaners = this.cleaners.filter(function (c) {

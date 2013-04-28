@@ -7,9 +7,10 @@
 
 		ticks: 0,
 
-		init: function (x, y, screen) {
+		init: function (x, y, speed, screen) {
 			this.x = x;
 			this.y = y;
+			this.speed = speed;
 
 			this.dir = screen.hitz.pop();
 
@@ -24,19 +25,19 @@
 
 			if (this.dir) {
 				if(this.x < this.dir[0]) {
-					this.x += 5;
+					this.x += this.speed;
 				}
 				if(this.x > this.dir[0]) {
-					this.x -= 5;
+					this.x -= this.speed;
 				}
 				if(this.y < this.dir[1]) {
-					this.y += 5;
+					this.y += this.speed;
 				}
 				if(this.y > this.dir[1]) {
-					this.y -= 5;
+					this.y -= this.speed;
 				}
 
-				if(Math.abs(this.x - this.dir[0]) < 6 && Math.abs(this.y - this.dir[1]) < 6) {
+				if(Math.abs(this.x - this.dir[0]) < this.speed + 1 && Math.abs(this.y - this.dir[1]) < this.speed + 1) {
 					this.dir = this.screen.hitz.pop();
 				}
 			} else {
