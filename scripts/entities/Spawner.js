@@ -12,7 +12,7 @@
 
 		cleaners: [],
 
-		init: function (x, y, rate, delay, bugspeed, level) {
+		init: function (x, y, rate, delay, bugspeed, rate_inc, level) {
 
 			this.x = x;
 			this.y = y;
@@ -20,6 +20,7 @@
 			this.rate = rate;
 			this.delay = delay;
 			this.bugspeed = bugspeed;
+			this.rate_inc = rate_inc;
 
 			this.level = level;
 		},
@@ -30,9 +31,19 @@
 				return true;
 			}
 
-			if(this.ticks % this.rate === 0) {
+			if((this.ticks % this.rate) === 0) {
 				this.sound.play();
-				this.cleaners.push(new Cleaner(this.x, this.y, this.bugspeed, this.level));
+
+				// Too many cleaners == you dead? why not.
+				if(this.cleaners.length < 30) {
+					this.cleaners.push(new Cleaner(this.x, this.y, this.bugspeed, this.level));
+				} else {
+					game.reset();
+				}
+
+				if(this.rate_inc && this.rate > 50) {
+					this.rate -= this.rate_inc;
+				}
 			};
 
 			this.cleaners = this.cleaners.filter(function (c) {

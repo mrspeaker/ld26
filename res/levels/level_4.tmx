@@ -5,8 +5,21 @@
  <tileset firstgid="49" source="pickups.tsx"/>
  <layer name="main" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztwQENAAAAwqD3T20PBxQAAAAAAMCXARkAAAE=
+   eJztlOEKwCAIhLMGe/833q+BiDozG4zdB7Iwy6PWjdbaCAQZXz4vczyyrKx9o8cX9PXm36VW492jNc7q202FvtOY70rOqn3qkeFe2w0tJPKk5KI9MhDbIxqej+zyF9lXvg0eGY7kOnl+2tlEeXrTFfqiuvg8KTmvfgbpU5a2iHaZ5/9E5flpumbR9sng+Xx0z0jdqr6VnkPkKj1m1sd2eh0AAAAAAAAAAPBXLuNrAhk=
   </data>
  </layer>
- <objectgroup name="entities" width="40" height="40"/>
+ <objectgroup name="entities" width="40" height="40">
+  <object name="pickup" type="laser" gid="49" x="224" y="192"/>
+  <object name="spawner" x="96" y="160" width="32" height="32">
+   <properties>
+    <property name="delay" value="100"/>
+    <property name="rate" value="500"/>
+    <property name="rate_increase" value="20"/>
+    <property name="speed" value="3"/>
+   </properties>
+  </object>
+  <object name="player_start" gid="17" x="32" y="96"/>
+  <object name="door" gid="9" x="800" y="288"/>
+  <object name="shaker" x="32" y="448" width="32" height="32"/>
+ </objectgroup>
 </map>

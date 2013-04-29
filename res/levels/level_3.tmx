@@ -5,7 +5,7 @@
  <tileset firstgid="49" source="pickups.tsx"/>
  <layer name="main" width="40" height="50">
   <data encoding="base64" compression="zlib">
-   eJztmNEKgCAMRTUD//+PI2Kwh5mrhdviHtjLeTqgqFjKxTaYKEgt6NMjrWu0Po3zAn02qKULLgLU0thE7Js5L9Bng7d0wXmD+8MG+mxk6cP99o4s6ztzXqDPBvpsZHi/8LOPXBQyre+d8wJ9NrL0RX9fRf0/bUrnRaa+ztzo33z1PjhbKhtyGlb1aZyEV98T9k8qxjRhqnIinUMAAPAXDkBvAUc=
+   eJztmFELhTAIhasF+///OC6XgQznJEtdnA98OU8fSnNt2/4cg8oC5wI/Pdxcs/lpsijgZ6O5VCbLQHMppDL6zbIo4GeDulQmiwb7wwb8bKzih/12j1XmO8uigJ8N+NlY4f5Cz76WZWGl+UpZFPCzMfLbleXld+d+5ek3ej+VHDz8ipBx89S6P4Xkx0H76+1XSSa9l3v+J/9c+u+R6x/tlbefJqP0fm/OeebS08/7fNCFozClPZsz7RkAAPgKF0OCAWM=
   </data>
  </layer>
  <objectgroup name="entities" width="40" height="50">
@@ -16,7 +16,7 @@
    <properties>
     <property name="delay" value="40"/>
     <property name="rate" value="500"/>
-    <property name="speed" value="4"/>
+    <property name="speed" value="1"/>
    </properties>
   </object>
  </objectgroup>

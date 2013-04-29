@@ -5,7 +5,7 @@
  <tileset firstgid="49" source="pickups.tsx"/>
  <layer name="main" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt1dEKgCAMhWGbF9H7v3BEDA5iY4VJ0P/BqMTmwYpKOS2Da7RMz+y6s/P5ntiAXk/5+l4qm0t7jRb1NJlTZaxK6f2z8q1Bvuj+Gfn0O7RmrC3fw1n5jvNNrq0z58qanHeXybFXJbGuv4dv5otE62q2t57vl/8fAAAAAAAA+KcdyRcApQ==
+   eJzt1eEKgCAMRlGbP6T3f+GIED7EloZK0D0wMplzmFAIl21wjPZUMw6s9YZXs/dMZvVnEspuxl6t0byaJjlR5qKErl/VX3L689av6E/vnBVzZeQzXNXfOd7l3So5d1JjXi+TZy1Cw775Hs7sz+Ptq73N+r5f/n8AAAAAAADgnw74QwCn
   </data>
  </layer>
  <objectgroup name="entities" width="40" height="40">

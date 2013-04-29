@@ -3,6 +3,8 @@
 
 	var PaintedScreen = Ω.Screen.extend({
 
+		crazy: false,
+
 		init: function (map) {
 
 			this.map = map;
@@ -81,8 +83,8 @@
 
 
 			// Could sine move the backtround...
-			var xo = 0, //Math.sin(Date.now()/110) * 5,
-				yo = 0; //Math.sin(Date.now()/900) * 5;
+			var xo = !this.crazy ? 0 : Math.sin(Date.now()/110) * 5,
+				yo = !this.crazy ? 0 : Math.sin(Date.now()/900) * 5;
 
 			//drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh)
 			gfx.ctx.drawImage(

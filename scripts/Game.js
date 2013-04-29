@@ -7,7 +7,7 @@
 		canvas: "#board",
 
 		level: 0,
-		levels: 3,
+		levels: 4,
 
 		jumped: false,
 
@@ -45,14 +45,13 @@
 
 			Ω.Sound._reset();
 			Ω.input.reset();
-			this.level = 0;
-			this.setScreen(new LevelScreen(this.level));
+			this.setScreen(new LevelScreen(this.level, this.level === this.levels - 1));
 
 		},
 
 		nextLevel: function () {
 			if (++this.level < this.levels) {
-				this.setScreen(new LevelScreen(this.level));
+				this.setScreen(new LevelScreen(this.level), this.level === this.levels - 1);
 			} else {
 				this.setScreen(new WinScreen());
 			}

@@ -9,13 +9,17 @@
 		sound: new Ω.Sound("res/audio/tickle", 0.8, true),
 
 		loaded: false,
+		finalLevel: false,
 
 		requiresGun: false,
 
 		spawner: null,
 
-		init: function (levelIdx) {
+		ticks: 0,
 
+		init: function (levelIdx, isFinal) {
+
+			this.finalLevel = levelIdx === 3;
 			this.hitz = [];
 
 			$.ajax({
@@ -70,8 +74,9 @@
 				if (spawner) {
 					var sp_rate = (spawner.properties && spawner.properties.rate) || 250,
 						sp_delay =  (spawner.properties && spawner.properties.delay) || 2000,
-						sp_bugspeed =  (spawner.properties && spawner.properties.bugspeed) || 4;
-					this.spawner = new Spawner(spawner.x, spawner.y, sp_rate, sp_delay, sp_bugspeed, this);
+						sp_bugspeed =  (spawner.properties && spawner.properties.bugspeed) || 4,
+						sp_rate_inc =  (spawner.properties && spawner.properties.rate_increase) || 0;
+					this.spawner = new Spawner(spawner.x, spawner.y, sp_rate, sp_delay, sp_bugspeed, sp_rate_inc, this);
 				}
 
 				this.physics = new Ω.Physics();
@@ -113,6 +118,8 @@
 
 			var self = this;
 
+			this.ticks++;
+
 			this.player.tick(this.map);
 
 			if (Math.random () < 0.01) {
@@ -127,6 +134,9 @@
 				return b.tick(self.map);
 			});
 
+			if(this.finalLevel && this.ticks > 1200) {
+				this.painted.crazy = true;
+			}
 
 			this.spawner && this.spawner.tick();
 
