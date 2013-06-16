@@ -9,15 +9,17 @@
 		level: 0,
 		levels: 4,
 
+		volume: 0,
+
 		jumped: false,
 
 		init: function (w, h, col) {
 
 			this._super(w, h, col);
 
-			Ω._progress = function (cur, max) {
+			Ω.evt.progress.push(function (cur, max) {
 				document.querySelector("#spinner").style.color = "hsl(331, 76%, " + (Math.random() * 40 + 20)  +"%)"
-			};
+			});
 
 			var az = urlParams.azerty;
 
@@ -32,7 +34,11 @@
 				["right", "right"],
 				["up", "jump"],
 				["down", "down"],
-				["mouse1", "fire"]
+				["mouse1", "fire"],
+				["wheelUp", "changeWeaponUp"],
+				["wheelDown", "changeWeaponDown"],
+				[49, "changeWeapon0"],
+				[50, "changeWeapon1"]
 			]);
 
 			this.reset();
@@ -44,8 +50,10 @@
 			document.querySelector("#spinner").style.display = "none";
 
 			Ω.Sound._reset();
+			Ω.Sound._setVolume(this.volume);
 			Ω.input.reset();
-			this.setScreen(new LevelScreen(this.level, this.level === this.levels - 1));
+			this.level = 0;
+			this.setScreen(new LevelScreen(this.level, false));
 
 		},
 

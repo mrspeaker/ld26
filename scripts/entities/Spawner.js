@@ -5,7 +5,7 @@
 
 		sound: new Ω.Sound("res/audio/bug", 0.6, false),
 
-		active: true,
+		active: false,
 		ticks: 0,
 
 		_forceRender: true,
@@ -27,18 +27,20 @@
 
 		tick: function () {
 
+			if (!this.active) {
+				return;
+			}
+
 			if (this.ticks++ < this.delay) {
 				return true;
 			}
 
 			if((this.ticks % this.rate) === 0) {
+
 				this.sound.play();
 
-				// Too many cleaners == you dead? why not.
 				if(this.cleaners.length < 30) {
 					this.cleaners.push(new Cleaner(this.x, this.y, this.bugspeed, this.level));
-				} else {
-					game.reset();
 				}
 
 				if(this.rate_inc && this.rate > 50) {

@@ -5,14 +5,16 @@
 	var LevelScreen = Ω.Screen.extend({
 
 		sheet: new Ω.SpriteSheet("res/tiles.png", 32),
-
 		sound: new Ω.Sound("res/audio/tickle", 0.8, true),
 
 		loaded: false,
 		finalLevel: false,
-
 		requiresGun: false,
 
+		player: null,
+		door: null,
+		pickups: null,
+		collidables: null,
 		spawner: null,
 
 		ticks: 0,
@@ -41,6 +43,7 @@
 					this.requiresGun = true;
 				}
 
+				// Convert the Tiled 1d map array to 2d
 				while (cells.length > 0) {
 				    mapped.push(cells.splice(0, mainLayer.width));
 				}
@@ -51,6 +54,7 @@
 					pickups = Ω.utils.getAllByKeyValue(entities.objects, "name", "pickup"),
 					door = Ω.utils.getByKeyValue(entities.objects, "name", "door"),
 					spawner = Ω.utils.getByKeyValue(entities.objects, "name", "spawner"),
+					collidables = Ω.utils.getAllByKeyValue(entities.objects, "type", "collidable"),
 					self = this;
 
 				this.player = new Player(player.x, player.y - 32, this);
@@ -67,13 +71,14 @@
 
 					});
 				} else {
-					console.log("no door in this level.");
+					console.log("errm... no door in this level.");
 					this.door = new Ω.Entity(0, 0);
 				}
 
 				if (spawner) {
+					console.log(spawner);
 					var sp_rate = (spawner.properties && spawner.properties.rate) || 250,
-						sp_delay =  (spawner.properties && spawner.properties.delay) || 2000,
+						sp_delay =  (spawner.properties && spawner.properties.delay) || 200,
 						sp_bugspeed =  (spawner.properties && spawner.properties.bugspeed) || 4,
 						sp_rate_inc =  (spawner.properties && spawner.properties.rate_increase) || 0;
 					this.spawner = new Spawner(spawner.x, spawner.y, sp_rate, sp_delay, sp_bugspeed, sp_rate_inc, this);
@@ -97,15 +102,18 @@
 					return p;
 				});
 
+				this.collidables = collidables.map(function (c) {
+
+					return new Collidable(c.name, c.x, c.y, c.width, c.height);
+
+				});
+
 				this.camera = new Ω.TrackingCamera(this.player, 0, 0, Ω.env.w, Ω.env.h);
 				this.painted = new PaintedScreen(this.map);
 
 				this.loaded = true;
 
-				// wtf? getting dom exc. so wrappied in timeout
-				setTimeout(function () {
-					self.sound.play();
-				}, 1000);
+				this.sound.play();
 
 
 			});
@@ -142,6 +150,7 @@
 
 			this.physics.checkCollision(this.player, this.pickups, "pickhit");
 			this.physics.checkCollision(this.player, [this.door], "doorhit");
+			this.physics.checkCollision(this.player, this.collidables, "triggerhit");
 
 			this.camera.tick();
 
@@ -150,6 +159,14 @@
 		levelOver: function () {
 
 			game.nextLevel();
+
+		},
+
+		startSpawner: function () {
+
+			if (this.spawner) {
+				this.spawner.active = true;
+			}
 
 		},
 
@@ -171,15 +188,15 @@
 
 		},
 
-		paint_laser: function (x, y, angle) {
-
-			this.painted.paint(x, y, angle, true);
-		},
-
 		unpaint: function (x, y) {
 
 			this.painted.paint(x, y, 0, true, true);
 
+		},
+
+		paint_laser: function (x, y, angle) {
+
+			this.painted.paint(x, y, angle, true);
 		},
 
 		paint_vision: function (x, y, angle) {

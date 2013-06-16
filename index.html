@@ -27,7 +27,33 @@
 		</div>
 
 		<script src="lib/jquery.1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="lib/Ω/omega.js" type="text/javascript" charset="utf-8"></script>
+		<!-- lib files -->
+		<!--script src="lib/Ω/omega.js" type="text/javascript" charset="utf-8"></script-->
+		<script src="lib/Ω/Ω.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/utils/base.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/utils/utils.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/utils/rays.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/utils/Timer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/gfx.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/input.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/assets/Image.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/assets/Sound.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/cameras/Camera.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/cameras/TrackingCamera.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/Physics.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/effects/Particle.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/effects/Spring.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/effects/Shake.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/screens/Screen.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/screens/Dialog.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/SpriteSheet.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/anim/Anims.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/anim/Anim.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/maps/Map.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/maps/IsoMap.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/maps/RayCastMap.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/entities/Entity.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Ω/Game.js" type="text/javascript" charset="utf-8"></script>
 
 		<!-- test game files -->
 		<script src="scripts/pickups/Pickup.js" type="text/javascript" charset="utf-8"></script>
@@ -37,8 +63,8 @@
 		<script src="scripts/weapons/Weapon.js" type="text/javascript" charset="utf-8"></script>
 		<script src="scripts/weapons/LaserBrush.js" type="text/javascript" charset="utf-8"></script>
 		<script src="scripts/weapons/VisionBrush.js" type="text/javascript" charset="utf-8"></script>
-		<script src="scripts/weapons/Gun.js" type="text/javascript" charset="utf-8"></script>
 
+		<script src="scripts/entities/Collidable.js" type="text/javascript" charset="utf-8"></script>
 		<script src="scripts/entities/PaintBullet.js" type="text/javascript" charset="utf-8"></script>
 		<script src="scripts/entities/Player.js" type="text/javascript" charset="utf-8"></script>
 		<script src="scripts/entities/Door.js" type="text/javascript" charset="utf-8"></script>
@@ -66,6 +92,17 @@
 		<script type="text/javascript" charset="utf-8">
 
 			var game = new Game(640, 480, "#fff");
+
+		</script>
+
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-40537194-1', 'mrspeaker.net');
+		  ga('send', 'pageview');
 
 		</script>
 	</body>

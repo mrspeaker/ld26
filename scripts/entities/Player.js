@@ -64,7 +64,6 @@
 			this.jumpdebounce = -1;
 			this.falling = true;
 			this.wasFalling = true;
-//new VisionBrush(this)
 			this.weapons = [null, null];
 			this.weaponIdx = 0;
 			this.weapon = this.weapons[this.weaponIdx];
@@ -126,6 +125,17 @@
 
 			if (!(Ω.input.isDown("fire")) && Ω.input.wasDown("fire")) {
 				this.weapon && this.weapon.released();
+			}
+
+			if (Ω.input.isDown("changeWeaponUp")) {
+				this.setWeapon((this.weaponIdx + 1) % this.weapons.length);
+			}
+
+			if (Ω.input.pressed("changeWeapon0")) {
+				this.setWeapon(0);
+			}
+			if (Ω.input.pressed("changeWeapon1")) {
+				this.setWeapon(1);
 			}
 
 			if (x1 < 0) {
@@ -234,8 +244,25 @@
 		},
 
 		doorhit: function (d) {
-			//this.screen.levelOver();
-			//d.hitCb && d.hitCb();
+
+		},
+
+		triggerhit: function (t) {
+
+			switch (t.type) {
+				case "spawner_trigger":
+					if (!t.hit) {
+						this.screen.startSpawner();
+					}
+					break;
+				case "trigger2":
+					break;
+				default:
+					console.log("unknown trigger:", t.type);
+			}
+
+			t.setHit(true);
+
 		},
 
 		playNote: function () {

@@ -8,10 +8,11 @@
 
 		sound: new Ω.Sound("res/audio/ray", 0.9, true),
 
-		time: 500,
+		ticks: 0,
 
 		fire: function (angle) {
 
+			this.ticks = 80;
 			this.shooting = true;
 			this.angle = angle;
 			this.sound.play();
@@ -28,6 +29,12 @@
 		tick: function (screen) {
 
 			if (this.shooting) {
+
+				if (!this.ticks--) {
+					this.released();
+					this.hit = null;
+					return;
+				}
 
 				this.hit = Ω.rays.cast(
 					this.user.angle,
