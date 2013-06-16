@@ -71,6 +71,19 @@
                  "width":32,
                  "x":192,
                  "y":1056
+                }, 
+                {
+                 "height":32,
+                 "name":"spawn_trigger",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":192,
+                 "y":64
                 }],
          "opacity":1,
          "type":"objectgroup",

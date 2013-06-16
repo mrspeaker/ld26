@@ -8,16 +8,13 @@
    <property name="requires_gun" value="true"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztluEKgCAMhDft/Z+5Pw7WMFx4A6H7YEiRt9MtS0VEN6NJHR2goQCNSu1Kf4j9+3N9T/d3ev+htC+QTqSP8OdZlubmVhG9md8V3lPl+2ue2ojMPkb/1f1n36i4l7O82XsoorfurjO9pfJcV3ZeFqup143jW674TKwB0p8fZ/6+5kP582vf/c9a9S4hhBBCCCGEEELm3G01ANM=
+   eJztltEKgCAMRaf2/9/ci4PLWLhyA6F7QKTC7TBX2USkbY4udYyEGC0hRmXsSr+M+v15f0/3O73/smJfSXEsYw78nkXpsLYK66a+K9Cp8v1Vpz5HpI7Wv7r/9B9la+nlfbqHtY/uQdQP3QZcr3oL13rPMtA9RR87f8mV7Yez5/c2X5Yf9t/uOWvVu4QQQgghhBBCCPG5ASadAM4=
   </data>
  </layer>
  <objectgroup name="entities" width="40" height="40">
-  <object name="player_start" gid="17" x="640" y="480"/>
+  <object name="player_start" gid="17" x="576" y="480"/>
   <object name="pickup" type="laser" gid="49" x="128" y="256"/>
   <object name="door" x="544" y="224" width="32" height="32"/>
- </objectgroup>
- <objectgroup name="maptities" width="40" height="40">
-  <object name="spikes" gid="7" x="64" y="256"/>
-  <object name="spikes" gid="7" x="64" y="256"/>
+  <object name="pickup" type="gun" gid="49" x="416" y="320"/>
  </objectgroup>
 </map>

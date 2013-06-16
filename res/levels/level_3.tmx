@@ -19,5 +19,6 @@
     <property name="speed" value="1"/>
    </properties>
   </object>
+  <object name="spawn_trigger" type="collidable" x="192" y="64" width="32" height="32"/>
  </objectgroup>
 </map>
