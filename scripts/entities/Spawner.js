@@ -22,6 +22,8 @@
 			this.bugspeed = bugspeed;
 			this.rate_inc = rate_inc;
 
+			this.active = true;
+
 			this.level = level;
 		},
 

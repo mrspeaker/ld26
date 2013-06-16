@@ -9,7 +9,7 @@
 		level: 0,
 		levels: 4,
 
-		volume: 0,
+		volume: 1,
 
 		jumped: false,
 

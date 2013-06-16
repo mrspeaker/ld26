@@ -77,10 +77,10 @@
 
 				if (spawner) {
 					console.log(spawner);
-					var sp_rate = (spawner.properties && spawner.properties.rate) || 250,
-						sp_delay =  (spawner.properties && spawner.properties.delay) || 200,
-						sp_bugspeed =  (spawner.properties && spawner.properties.bugspeed) || 4,
-						sp_rate_inc =  (spawner.properties && spawner.properties.rate_increase) || 0;
+					var sp_rate = parseInt((spawner.properties && spawner.properties.rate) || 250, 10),
+						sp_delay = parseInt((spawner.properties && spawner.properties.delay) || 200, 10),
+						sp_bugspeed = parseInt((spawner.properties && spawner.properties.bugspeed) || 4, 10),
+						sp_rate_inc =  parseInt((spawner.properties && spawner.properties.rate_increase) || 0, 10);
 					this.spawner = new Spawner(spawner.x, spawner.y, sp_rate, sp_delay, sp_bugspeed, sp_rate_inc, this);
 				}
 
