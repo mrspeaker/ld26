@@ -38,8 +38,8 @@
 
 				this.hit = Ω.rays.cast(
 					this.user.angle,
-					this.user.x,
-					this.user.y,
+					this.user.x + (this.user.w / 2) + (Math.sin(Math.PI / 2 - this.user.angle) * 5),
+					this.user.y + (Math.cos(Math.PI / 2 - this.user.angle) * 5),
 					screen.map
 				);
 
