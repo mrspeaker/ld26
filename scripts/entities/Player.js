@@ -238,7 +238,7 @@
 			}
 
 			if (p instanceof GunPickup) {
-				this.weapons[0] = new VisionBrush(this);
+				this.weapons[0] = new KillRay(this);
 				this.setWeapon(0);
 			}
 		},

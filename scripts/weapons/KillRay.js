@@ -2,7 +2,7 @@
 	"use strict";
 
 	// Paints in the level as you shoot
-	var VisionBrush = Weapon.extend({
+	var KillRay = Weapon.extend({
 
 		shooting: false,
 		ooo: false,
@@ -101,5 +101,5 @@
 
 	})
 
-	window.VisionBrush = VisionBrush;
+	window.KillRay = KillRay;
 }(Ω));
