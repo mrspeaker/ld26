@@ -5,6 +5,7 @@
 	var VisionBrush = Weapon.extend({
 
 		shooting: false,
+		ooo: false,
 
 		fire: function (angle) {
 
@@ -34,34 +35,44 @@
 					this.hit.x *= screen.map.sheet.w;
 					this.hit.y *= screen.map.sheet.h;
 
-					screen.paint_vision(
-						this.hit.x,
-						this.hit.y,
-						this.angle);
+					screen.unpaint(this.hit.x, this.hit.y);
 				}
 
-				// TODO: figure out if angle === hit things.
+				var self = this,
+					angleUser = self.user.angle;
 
-				// var self = this;
-				// screen.pickups.map(function (p) {
+				self.ooo = ">";
 
-				// 	var playerAngle = Ω.utils.angleBetween(self.user, p);
-				// 	var gunAngle = self.user.angle;
+				screen.pickups.map(function(p) {
 
-				// 	console.log(Ω.utils.rad2deg(playerAngle), Ω.utils.rad2deg(gunAngle));
-				// 	var c = gfx.ctx;
-				// 	c.strokeStyle = "rgba(155, 264, 156, 0.2)";
-				// 	c.lineWidth = 3;
-				// 	c.beginPath();
-				// 	c.moveTo(self.user.x, self.user.y);
-				// 	c.lineTo(p.x, p.y);
-				// 	c.closePath();
-				// 	c.stroke();
+					var ab = Ω.utils.angleBetween(p, self.user);
 
-				// });
+					var walltest = "",
+						distToWall = 0;
+
+					var hitEntity = Math.abs(ab - angleUser) < 0.05 || (ab - angleUser) > (Math.PI - 0.05);
+
+					if (hitEntity) {
+						var distToWall = Ω.utils.dist(self.hit, self.user),
+							distToEntity = Ω.utils.dist(self.user, p);
+
+						if (distToEntity < distToWall) {
+							walltest = "ENTIY!";
+						} else {
+							walltest = "WALLL";
+						}
+
+						self.ooo += walltest
+
+					} else {
+						self.ooo += "-";
+					}
+
+				});
 
 			} else {
 				this.hit = null;
+				this.ooo = "-";
 			}
 
 		},
@@ -80,6 +91,9 @@
 				c.lineTo(this.hit.x, this.hit.y);
 				c.closePath();
 				c.stroke();
+
+				c.fillStyle = "green";
+				c.fillText(this.ooo, this.user.x, this.user.y + this.user.h + 10);
 
 			}
 
