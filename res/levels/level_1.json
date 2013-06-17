@@ -87,6 +87,20 @@
                  "width":0,
                  "x":512,
                  "y":256
+                }, 
+                {
+                 "gid":10,
+                 "height":0,
+                 "name":"baddie_spawner",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":288,
+                 "y":96
                 }],
          "opacity":1,
          "type":"objectgroup",

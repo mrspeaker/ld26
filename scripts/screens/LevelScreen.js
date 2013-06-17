@@ -54,6 +54,7 @@
 					pickups = Ω.utils.getAllByKeyValue(entities.objects, "name", "pickup"),
 					door = Ω.utils.getByKeyValue(entities.objects, "name", "door"),
 					spawner = Ω.utils.getByKeyValue(entities.objects, "name", "spawner"),
+					baddie_spawner = Ω.utils.getByKeyValue(entities.objects, "name", "baddie_spawner"),
 					collidables = Ω.utils.getAllByKeyValue(entities.objects, "type", "collidable"),
 					self = this;
 
@@ -76,12 +77,15 @@
 				}
 
 				if (spawner) {
-					console.log(spawner);
 					var sp_rate = parseInt((spawner.properties && spawner.properties.rate) || 250, 10),
 						sp_delay = parseInt((spawner.properties && spawner.properties.delay) || 200, 10),
 						sp_bugspeed = parseInt((spawner.properties && spawner.properties.bugspeed) || 4, 10),
 						sp_rate_inc =  parseInt((spawner.properties && spawner.properties.rate_increase) || 0, 10);
 					this.spawner = new Spawner(spawner.x, spawner.y, sp_rate, sp_delay, sp_bugspeed, sp_rate_inc, this);
+				}
+
+				if (baddie_spawner) {
+					this.baddie_spawner = new BaddieSpawner(baddie_spawner.x, baddie_spawner.y, 250, 200, 4, 0, this);
 				}
 
 				this.physics = new Ω.Physics();
@@ -147,6 +151,7 @@
 			}
 
 			this.spawner && this.spawner.tick();
+			this.baddie_spawner && this.baddie_spawner.tick();
 
 			this.physics.checkCollision(this.player, this.pickups, "pickhit");
 			this.physics.checkCollision(this.player, [this.door], "doorhit");
@@ -212,7 +217,7 @@
 			c.fillStyle = "hsl(120, 3%, 0%)";
 			c.fillRect(0, 0, gfx.w, gfx.h);
 
-			this.camera.render(gfx, [this.map, this.door, this.painted, this.player, this.bullets, this.pickups, this.spawner]);
+			this.camera.render(gfx, [this.map, this.door, this.painted, this.player, this.bullets, this.pickups, this.spawner, this.baddie_spawner]);
 
 		}
 

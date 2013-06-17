@@ -43,7 +43,7 @@
 
 				self.ooo = ">";
 
-				screen.pickups.map(function(p) {
+				screen.baddie_spawner.baddies.map(function(p) {
 
 					var ab = Ω.utils.angleBetween(p, self.user);
 
@@ -58,6 +58,7 @@
 
 						if (distToEntity < distToWall) {
 							walltest = "ENTIY!";
+							p.remove();
 						} else {
 							walltest = "WALLL";
 						}
@@ -83,11 +84,23 @@
 
 				var c = gfx.ctx;
 
-				c.strokeStyle = "rgba(255, 64, 156, 0.2)";
+				c.strokeStyle = "rgba(64, 255, 156, 0.2)";
+				c.lineWidth = 10;
+
+				var xstart = this.user.x + (this.user.w / 2) + (Math.sin(Math.PI / 2 - this.angle) * 5),
+					ystart = this.user.y + (Math.cos(Math.PI / 2 - this.angle) * 5);
+
+				c.beginPath();
+				c.moveTo(xstart, ystart);
+				c.lineTo(this.hit.x, this.hit.y);
+				c.closePath();
+				c.stroke();
+
+				c.strokeStyle = "rgba(64, 255, 156, 0.7)";
 				c.lineWidth = 3;
 
 				c.beginPath();
-				c.moveTo(this.user.x + this.user.w / 2, this.user.y + this.user.h / 2);
+				c.moveTo(xstart, ystart);
 				c.lineTo(this.hit.x, this.hit.y);
 				c.closePath();
 				c.stroke();
