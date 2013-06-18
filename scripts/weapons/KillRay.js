@@ -58,6 +58,8 @@
 
 						if (distToEntity < distToWall) {
 							walltest = "ENTIY!";
+							self.hit.x = p.x;
+							self.hit.y = p.y;
 							p.remove();
 						} else {
 							walltest = "WALLL";

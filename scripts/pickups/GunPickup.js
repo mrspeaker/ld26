@@ -16,7 +16,7 @@
 
 		render: function (gfx) {
 
-			this.sheet.render(gfx, 0, 0, this.x, this.y);
+			this.sheet.render(gfx, 1, 0, this.x, this.y);
 
 		}
 

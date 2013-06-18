@@ -115,6 +115,7 @@
 
 			if (Ω.input.pressed("fire")) {
 				if (this.weapon) {
+					// TODO: move particles to weapon. add a bunch more!
 					this.particle.play(this.x + (this.w / 2), this.y + 10, this.angle);
 					this.weapon.fire(this.angle);
 				} else {
@@ -296,7 +297,9 @@
 			this.anims.render(gfx, this.x + 1, this.y + 17);
 
 			// Arms
-			this.sheet.render(gfx, this.headAt + (this.weapon ? 8 : 0), 1, this.x + 2, this.y + (this.headAt > 0 && this.headAt < 4 ? -5 : 5));
+			var armsX = this.weapon ? 8 : 0,
+				armsY = this.weapon && this.weaponIdx === 0 ? 4 : 1;
+			this.sheet.render(gfx, this.headAt + armsX, armsY, this.x + 2, this.y + (this.headAt > 0 && this.headAt < 4 ? -5 : 5));
 
 			this.weapon && this.weapon.render(gfx);
 
