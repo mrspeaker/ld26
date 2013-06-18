@@ -21,9 +21,9 @@
 				document.querySelector("#spinner").style.color = "hsl(331, 76%, " + (Math.random() * 40 + 20)  +"%)"
 			});
 
-			var az = urlParams.azerty;
+			var az = Ω.urlParams.azerty;
 
-			Ω.input.binds([
+			Ω.input.bind([
 				["space", "jump"],
 				["escape", "escape"],
 				[az ? "az_a" : "a", "left"],

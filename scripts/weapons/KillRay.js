@@ -1,7 +1,7 @@
 (function (Ω) {
 	"use strict";
 
-	// Paints in the level as you shoot
+	// Kills the things
 	var KillRay = Weapon.extend({
 
 		shooting: false,
